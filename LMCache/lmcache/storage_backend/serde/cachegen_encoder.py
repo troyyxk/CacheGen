@@ -116,6 +116,7 @@ def _convert_to_int_and_normalize(cdf_float, needs_normalization):
       cdf.add_(r)
     return cdf
 
+# TODO, where does IT EVER USED???
 class CacheGenEncoderImpl:
     def __init__(self, **kwargs) -> None:
         """ 
@@ -320,7 +321,8 @@ class CacheGenSerializer(Serializer):
         ret.fill_(config.value_second_bins)
         ret[:config.value_first_layers] = config.value_first_bins
         return ret.cuda()
-        
+
+    # TODO, figure how is this kv cache and what makes it different
     @_lmcache_nvtx_annotate
     def to_bytes(
             self,

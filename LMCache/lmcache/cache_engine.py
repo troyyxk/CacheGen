@@ -66,8 +66,8 @@ class LMCacheEngine:
         return ""
 
     def _hash(
-            self, 
-            tokens: torch.Tensor, 
+            self,
+            tokens: torch.Tensor,
             prefix_hash: str,
         ) -> str:
         # TODO: change it to a more efficient hash function
@@ -175,6 +175,7 @@ class LMCacheEngine:
         """
         Skip the existing chunks and return the rest of the chunks
         """
+        # TODO, difference between tokens and kv_tensors here
         chunk_hashes = self._prefix_hash(self._chunk_tokens(tokens, device))
         num_tokens = self._num_tokens_in_kv(kv_tensors, fmt)
 

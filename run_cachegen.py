@@ -23,7 +23,7 @@ p.add_argument("--path_to_context", type=str, help="The directory where the cont
 p.add_argument("--start", type=int, default = 0)
 p.add_argument("--end", type=int, default = 1)
 p.add_argument("--encoded_dir", type=str, default = None)
-p.add_argument("--results_dir", type=str, default = None)
+p.add_argument("CacheGenConfig", type=str, default = None)
 p.add_argument("--results_str", type=str, default = "results")
 p.add_argument("--dataset_name", type=str)
 p.add_argument("--calculate_metric", type=int)
@@ -44,15 +44,22 @@ if __name__ == "__main__":
     kv_tokens = []
     # Start encoding
     layer_to_device_id = {}
+    # read 0.pkl, the one saved specifically
     kv = pickle.load(open(f"{args.save_dir}/raw_kv_{args.start}.pkl", "rb"))
     for i in range(len(kv)):
         layer_to_device_id[i] = kv[i][0].device.index
     avg_size = []
+    # save to kv cache
     for doc_id in range(args.start, args.end):
         key_value = torch.load(f"{args.save_dir}/raw_kv_{doc_id}.pt")
         lmcache_config = LMCacheEngineConfig.from_defaults(chunk_size=key_value.shape[-2])
+        # print("************")
+        # print(args.model_id)
+        # print("************")
+        # this line duplicated, shall not be in loop
         meta_data = LMCacheEngineMetadata(model_name=args.model_id, fmt="huggingface", world_size=1, worker_id=0)
         cachegen_serializer = CacheGenSerializer(lmcache_config, meta_data)
+        # this is the kv cache
         bytes = cachegen_serializer.to_bytes(key_value)
         pickle.dump(bytes, open(f"{args.encoded_dir}/{doc_id}.pkl", "wb"))
         kv_tokens += [key_value.shape[-2]]
@@ -61,10 +68,13 @@ if __name__ == "__main__":
     # Start inferencing 
     decoded_kvs = []
     average_acc = []
+    # load kv cache and dcode them
     for doc_id in range(args.start, args.end):
         os.environ['DOC_ID'] = str(doc_id)
         print("Running inference for doc_id: ", doc_id)
+        # 8902
         lmcache_config = LMCacheEngineConfig.from_defaults(chunk_size=kv_tokens[doc_id])
+        # this line duplicated, shall not be in loop
         meta_data = LMCacheEngineMetadata(model_name=args.model_id, fmt="huggingface", world_size=1, worker_id=0)
         deserializer = CacheGenDeserializer(lmcache_config, meta_data)
         bytes = pickle.load(open(f"{args.encoded_dir}/{doc_id}.pkl", "rb"))

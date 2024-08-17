@@ -9,6 +9,7 @@ from lmcache.logging import init_logger
 logger = init_logger(__name__)
 
 # TODO: performance optimization for this class, consider using C/C++/Rust for communication + deserialization
+# TODO, where is this one been used
 class LMCServerConnector(RemoteConnector):
     def __init__(self, host, port):
         self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

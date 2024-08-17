@@ -58,5 +58,6 @@ if __name__ == "__main__":
         kv_tensor = to_blob(kv)
         
         torch.save(kv_tensor, f"{args.save_dir}/raw_kv_{doc_id}.pt")
+        # TODO, why save first one specifically
         if doc_id == 0:
             pickle.dump(kv, open(f"{args.save_dir}/raw_kv_{doc_id}.pkl", "wb"))

@@ -16,6 +16,7 @@ class Constants:
     SERVER_FAIL = 400
 
 
+# TODO, understand control message
 @dataclass
 class ClientMetaMessage:
     """

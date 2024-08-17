@@ -31,6 +31,8 @@ class CacheGenConfig:
         family_70b = ["Yukang/LongAlpaca-70B-16k"]
 
         if model_name in family_7b:
+            # the 3 layers here are referring to applying different quantization levels to shallow layers and deeper
+            # layers
             return CacheGenConfig(
                 key_first_layers=10,
                 key_second_layers=20,

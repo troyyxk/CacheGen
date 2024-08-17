@@ -26,3 +26,5 @@ python run_cachegen.py \
     --results_dir ${MODEL_ID}_results/ \
     --dataset_name $1 \
     --calculate_metric $2
+
+./tmp/mistral7b_longchat_data

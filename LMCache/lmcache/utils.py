@@ -4,6 +4,7 @@ from nvtx import annotate
 from typing import Tuple
 from dataclasses import dataclass
 
+# TODO, why is KVCache store this way, tuple of tuple pair of tensor
 # Type definition
 KVCache = Tuple[Tuple[torch.Tensor, torch.Tensor], ...]
 
