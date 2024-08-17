@@ -1,0 +1,591 @@
+root@autodl-container-690911b33c-d8271f5a:~/CacheGen# conda env create -f env.yaml
+Channels:
+ - nvidia/label/cuda-12.1.0
+ - defaults
+ - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+ - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
+ - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch
+Platform: linux-64
+Collecting package metadata (repodata.json): done
+Solving environment: done
+
+Downloading and Extracting Packages:
+                                                                                                                                                                                                                                                   
+Preparing transaction: done                                                                                                                                                                                                                        
+Verifying transaction: done                                                                                                                                                                                                                        
+Executing transaction: done                                                                                                                                                                                                                        
+Installing pip dependencies: /                                                                                                                                                                                                                     
+                             /-                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                   
+                             \ Ran pip subprocess with arguments:                                                         
+['/root/miniconda3/envs/cachegen/bin/python', '-m', 'pip', 'install', '-U', '-r', '/root/CacheGen/condaenv.33gmb2i_.requirements.txt', '--exists-action=b']                                                                                                                   
+Pip subprocess output:                                                                                      
+Looking in indexes: http://mirrors.aliyun.com/pypi/simple                                                                              
+Collecting bitsandbytes==0.43.3 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 1))        
+  Downloading http://mirrors.aliyun.com/pypi/packages/f8/1a/3cbdd70ce276085602ffe7e4f52753a41c43464053eec9e76b3dd065e4c9/bitsandbytes-0.43.3-py3-none-manylinux_2_24_x86_64.whl (137.5 MB)                                                         
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 137.5/137.5 MB 1.2 MB/s eta 0:00:00                                                      
+Collecting accelerate==0.32.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 2))          
+  Downloading http://mirrors.aliyun.com/pypi/packages/e4/74/564f621699b049b0358f7ad83d7437f8219a5d6efb69bbfcca328b60152f/accelerate-0.32.1-py3-none-any.whl (314 kB)                                                                               
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 314.1/314.1 kB 1.2 MB/s eta 0:00:00                                                      
+Collecting aiofiles==23.2.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 3))            
+  Downloading http://mirrors.aliyun.com/pypi/packages/c5/19/5af6804c4cc0fed83f47bff6e413a98a36618e7d40185cd36e69737f3b0e/aiofiles-23.2.1-py3-none-any.whl (15 kB)                                                                                  
+Collecting aiohttp==3.9.5 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 4))                                         
+  Downloading http://mirrors.aliyun.com/pypi/packages/a0/09/e7637f4f0760cad4d67347bbd8311c6ad0259a3fc01f04555af9e84bd378/aiohttp-3.9.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.2 MB)                                                                    
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 1.2 MB/s eta 0:00:00                               
+Collecting aiosignal==1.3.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 5))                                       
+  Downloading http://mirrors.aliyun.com/pypi/packages/76/ac/a7305707cb852b7e16ff80eaf5692309bde30e2b1100a1fcacdc8f731d97/aiosignal-1.3.1-py3-none-any.whl (7.6 kB)                                                                                                            
+Collecting altair==5.3.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 6))               
+  Downloading http://mirrors.aliyun.com/pypi/packages/46/30/2118537233fa72c1d91a81f5908a7e843a6601ccc68b76838ebc4951505f/altair-5.3.0-py3-none-any.whl (857 kB)                                                                                    
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 857.8/857.8 kB 1.2 MB/s eta 0:00:00                                                      
+Collecting annotated-types==0.7.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 7))      
+  Downloading http://mirrors.aliyun.com/pypi/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl (13 kB)                                                                            
+Collecting anyio==4.4.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 8))
+  Downloading http://mirrors.aliyun.com/pypi/packages/7b/a2/10639a79341f6c019dedc95bd48a4928eed9f1d1197f4c04f546fc7ae0ff/anyio-4.4.0-py3-none-any.whl (86 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 86.8/86.8 kB 1.1 MB/s eta 0:00:00
+Collecting asttokens==2.4.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 9))
+  Downloading http://mirrors.aliyun.com/pypi/packages/45/86/4736ac618d82a20d87d2f92ae19441ebc7ac9e7a581d7e58bbe79233b24a/asttokens-2.4.1-py2.py3-none-any.whl (27 kB)
+Collecting async-timeout==4.0.3 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 10))
+  Downloading http://mirrors.aliyun.com/pypi/packages/a7/fa/e01228c2938de91d47b307831c62ab9e4001e747789d0b05baf779a6488c/async_timeout-4.0.3-py3-none-any.whl (5.7 kB)
+Collecting attrs==23.2.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 11))
+  Downloading http://mirrors.aliyun.com/pypi/packages/e0/44/827b2a91a5816512fcaf3cc4ebc465ccd5d598c45cefa6703fcf4a79018f/attrs-23.2.0-py3-none-any.whl (60 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.8/60.8 kB 1.0 MB/s eta 0:00:00
+Collecting certifi==2024.7.4 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 12))
+  Downloading http://mirrors.aliyun.com/pypi/packages/1c/d5/c84e1a17bf61d4df64ca866a1c9a913874b4e9bdc131ec689a0ad013fb36/certifi-2024.7.4-py3-none-any.whl (162 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 163.0/163.0 kB 1.2 MB/s eta 0:00:00
+Collecting charset-normalizer==3.3.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 13))
+  Downloading http://mirrors.aliyun.com/pypi/packages/da/f1/3702ba2a7470666a62fd81c58a4c40be00670e5006a67f4d626e57f013ae/charset_normalizer-3.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (142 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 142.1/142.1 kB 1.2 MB/s eta 0:00:00
+Collecting click==8.1.7 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 14))
+  Downloading http://mirrors.aliyun.com/pypi/packages/00/2e/d53fa4befbf2cfa713304affc7ca780ce4fc1fd8710527771b58311a3229/click-8.1.7-py3-none-any.whl (97 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 97.9/97.9 kB 1.2 MB/s eta 0:00:00
+Collecting comm==0.2.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 15))
+  Downloading http://mirrors.aliyun.com/pypi/packages/e6/75/49e5bfe642f71f272236b5b2d2691cf915a7283cc0ceda56357b61daa538/comm-0.2.2-py3-none-any.whl (7.2 kB)
+Collecting contourpy==1.2.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 16))
+  Downloading http://mirrors.aliyun.com/pypi/packages/67/0f/6e5b4879594cd1cbb6a2754d9230937be444f404cf07c360c07a10b36aac/contourpy-1.2.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (305 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 305.2/305.2 kB 1.2 MB/s eta 0:00:00
+Collecting cpm-kernels==1.0.11 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 17))
+  Downloading http://mirrors.aliyun.com/pypi/packages/af/84/1831ce6ffa87b8fd4d9673c3595d0fc4e6631c0691eb43f406d3bf89b951/cpm_kernels-1.0.11-py3-none-any.whl (416 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 416.6/416.6 kB 1.3 MB/s eta 0:00:00
+Collecting cycler==0.12.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 18))
+  Downloading http://mirrors.aliyun.com/pypi/packages/e7/05/c19819d5e3d95294a6f5947fb9b9629efb316b96de511b418c53d245aae6/cycler-0.12.1-py3-none-any.whl (8.3 kB)
+Collecting debugpy==1.8.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 19))
+  Downloading http://mirrors.aliyun.com/pypi/packages/17/4c/35395eaf9d600175fc974f4d14f7f81128fe8f65789092539b41056a9b6b/debugpy-1.8.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.0/3.0 MB 1.2 MB/s eta 0:00:00
+Collecting decorator==5.1.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 20))
+  Downloading http://mirrors.aliyun.com/pypi/packages/d5/50/83c593b07763e1161326b3b8c6686f0f4b0f24d5526546bee538c89837d6/decorator-5.1.1-py3-none-any.whl (9.1 kB)
+Collecting distro==1.9.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 21))
+  Downloading http://mirrors.aliyun.com/pypi/packages/12/b3/231ffd4ab1fc9d679809f356cebee130ac7daa00d6d6f3206dd4fd137e9e/distro-1.9.0-py3-none-any.whl (20 kB)
+Collecting dnspython==2.6.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 22))
+  Downloading http://mirrors.aliyun.com/pypi/packages/87/a1/8c5287991ddb8d3e4662f71356d9656d91ab3a36618c3dd11b280df0d255/dnspython-2.6.1-py3-none-any.whl (307 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 307.7/307.7 kB 1.2 MB/s eta 0:00:00
+Collecting docker-pycreds==0.4.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 23))
+  Downloading http://mirrors.aliyun.com/pypi/packages/f5/e8/f6bd1eee09314e7e6dee49cbe2c5e22314ccdb38db16c9fc72d2fa80d054/docker_pycreds-0.4.0-py2.py3-none-any.whl (9.0 kB)
+Collecting einops==0.8.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 24))
+  Downloading http://mirrors.aliyun.com/pypi/packages/44/5a/f0b9ad6c0a9017e62d4735daaeb11ba3b6c009d69a26141b258cd37b5588/einops-0.8.0-py3-none-any.whl (43 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.2/43.2 kB 1.2 MB/s eta 0:00:00
+Collecting email-validator==2.2.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 25))
+  Downloading http://mirrors.aliyun.com/pypi/packages/d7/ee/bf0adb559ad3c786f12bcbc9296b3f5675f529199bef03e2df281fa1fadb/email_validator-2.2.0-py3-none-any.whl (33 kB)
+Collecting exceptiongroup==1.2.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 26))
+  Downloading http://mirrors.aliyun.com/pypi/packages/01/90/79fe92dd413a9cab314ef5c591b5aa9b9ba787ae4cadab75055b0ae00b33/exceptiongroup-1.2.1-py3-none-any.whl (16 kB)
+Collecting executing==2.0.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 27))
+  Downloading http://mirrors.aliyun.com/pypi/packages/80/03/6ea8b1b2a5ab40a7a60dc464d3daa7aa546e0a74d74a9f8ff551ea7905db/executing-2.0.1-py2.py3-none-any.whl (24 kB)
+Collecting fastapi==0.111.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 28))
+  Downloading http://mirrors.aliyun.com/pypi/packages/e6/33/de41e554e5a187d583906e10d53bfae5fd6c07e98cbf4fe5262bd37e739a/fastapi-0.111.0-py3-none-any.whl (91 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 92.0/92.0 kB 1.1 MB/s eta 0:00:00
+Collecting fastapi-cli==0.0.4 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 29))
+  Downloading http://mirrors.aliyun.com/pypi/packages/a1/03/89bf615052aa5453c04d952225ded0b88aab6487b9c5f0c268939d13b860/fastapi_cli-0.0.4-py3-none-any.whl (9.5 kB)
+Collecting ffmpy==0.3.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 30))
+  Downloading http://mirrors.aliyun.com/pypi/packages/1d/70/07914754979f5dd80bda947a0ffd181c08bfcb137b01c3c0cef45254d271/ffmpy-0.3.2.tar.gz (5.5 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting filelock==3.15.4 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 31))
+  Downloading http://mirrors.aliyun.com/pypi/packages/ae/f0/48285f0262fe47103a4a45972ed2f9b93e4c80b8fd609fa98da78b2a5706/filelock-3.15.4-py3-none-any.whl (16 kB)
+Collecting fonttools==4.53.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 32))
+  Downloading http://mirrors.aliyun.com/pypi/packages/56/61/ad19cad430aacbc3418be503e1f6daed9375c997a4e32b78a91195b3054a/fonttools-4.53.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.6/4.6 MB 1.1 MB/s eta 0:00:00
+Collecting frozenlist==1.4.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 33))
+  Downloading http://mirrors.aliyun.com/pypi/packages/ec/25/0c87df2e53c0c5d90f7517ca0ff7aca78d050a8ec4d32c4278e8c0e52e51/frozenlist-1.4.1-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (239 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 239.5/239.5 kB 947.4 kB/s eta 0:00:00
+Collecting fschat==0.2.36 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 34))
+  Downloading http://mirrors.aliyun.com/pypi/packages/43/cd/3651634ab25f74e64eaf6a6e08e359320d6b26e637afe622762fe99d127b/fschat-0.2.36-py3-none-any.whl (256 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 256.9/256.9 kB 897.3 kB/s eta 0:00:00
+Collecting fsspec==2024.6.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 35))
+  Downloading http://mirrors.aliyun.com/pypi/packages/5e/44/73bea497ac69bafde2ee4269292fa3b41f1198f4bb7bbaaabde30ad29d4a/fsspec-2024.6.1-py3-none-any.whl (177 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 177.6/177.6 kB 721.5 kB/s eta 0:00:00
+Collecting gitdb==4.0.11 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 36))
+  Downloading http://mirrors.aliyun.com/pypi/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl (62 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 962.8 kB/s eta 0:00:00
+Collecting gitpython==3.1.43 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 37))
+  Downloading http://mirrors.aliyun.com/pypi/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl (207 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 207.3/207.3 kB 1.2 MB/s eta 0:00:00
+Collecting gradio==4.37.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 38))
+  Downloading http://mirrors.aliyun.com/pypi/packages/f1/1f/95a1bc5ec7cf8cdf92f2abf9e0bd59cbddf7870ae233aa33a99262cff9e1/gradio-4.37.2-py3-none-any.whl (12.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 1.1 MB/s eta 0:00:00
+Collecting gradio-client==1.0.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 39))
+  Downloading http://mirrors.aliyun.com/pypi/packages/53/4b/c527f41d89c609f2ca8697f6097feb6f9dbcb7d56c31cfabe24bf3f1c566/gradio_client-1.0.2-py3-none-any.whl (318 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 318.2/318.2 kB 1.0 MB/s eta 0:00:00
+Collecting h11==0.14.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 40))
+  Downloading http://mirrors.aliyun.com/pypi/packages/95/04/ff642e65ad6b90db43e668d70ffb6736436c7ce41fcc549f4e9472234127/h11-0.14.0-py3-none-any.whl (58 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.3/58.3 kB 1.1 MB/s eta 0:00:00
+Collecting httpcore==1.0.5 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 41))
+  Downloading http://mirrors.aliyun.com/pypi/packages/78/d4/e5d7e4f2174f8a4d63c8897d79eb8fe2503f7ecc03282fee1fa2719c2704/httpcore-1.0.5-py3-none-any.whl (77 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 77.9/77.9 kB 1.2 MB/s eta 0:00:00
+Collecting httptools==0.6.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 42))
+  Downloading http://mirrors.aliyun.com/pypi/packages/65/e7/dd5ba95c84047118a363f0755ad78e639e0529be92424bb020496578aa3b/httptools-0.6.1-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (341 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 341.4/341.4 kB 1.1 MB/s eta 0:00:00
+Collecting httpx==0.27.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 43))
+  Downloading http://mirrors.aliyun.com/pypi/packages/41/7b/ddacf6dcebb42466abd03f368782142baa82e08fc0c1f8eaa05b4bae87d5/httpx-0.27.0-py3-none-any.whl (75 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 75.6/75.6 kB 931.5 kB/s eta 0:00:00
+Collecting huggingface-hub==0.23.4 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 44))
+  Downloading http://mirrors.aliyun.com/pypi/packages/69/d6/73f9d1b7c4da5f0544bc17680d0fa9932445423b90cd38e1ee77d001a4f5/huggingface_hub-0.23.4-py3-none-any.whl (402 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 402.6/402.6 kB 1.1 MB/s eta 0:00:00
+Collecting idna==3.7 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 45))
+  Downloading http://mirrors.aliyun.com/pypi/packages/e5/3e/741d8c82801c347547f8a2a06aa57dbb1992be9e948df2ea0eda2c8b79e8/idna-3.7-py3-none-any.whl (66 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 66.8/66.8 kB 1.1 MB/s eta 0:00:00
+Collecting importlib-resources==6.4.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 46))
+  Downloading http://mirrors.aliyun.com/pypi/packages/75/06/4df55e1b7b112d183f65db9503bff189e97179b256e1ea450a3c365241e0/importlib_resources-6.4.0-py3-none-any.whl (38 kB)
+Collecting ipykernel==6.29.5 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 47))
+  Downloading http://mirrors.aliyun.com/pypi/packages/94/5c/368ae6c01c7628438358e6d337c19b05425727fbb221d2a3c4303c372f42/ipykernel-6.29.5-py3-none-any.whl (117 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 117.2/117.2 kB 979.3 kB/s eta 0:00:00
+Collecting ipython==8.26.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 48))
+  Downloading http://mirrors.aliyun.com/pypi/packages/73/48/4d2818054671bb272d1b12ca65748a4145dc602a463683b5c21b260becee/ipython-8.26.0-py3-none-any.whl (817 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 817.9/817.9 kB 1.1 MB/s eta 0:00:00
+Collecting jedi==0.19.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 49))
+  Downloading http://mirrors.aliyun.com/pypi/packages/20/9f/bc63f0f0737ad7a60800bfd472a4836661adae21f9c2535f3957b1e54ceb/jedi-0.19.1-py2.py3-none-any.whl (1.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 1.1 MB/s eta 0:00:00
+Collecting jinja2==3.1.4 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 50))
+  Downloading http://mirrors.aliyun.com/pypi/packages/31/80/3a54838c3fb461f6fec263ebf3a3a41771bd05190238de3486aae8540c36/jinja2-3.1.4-py3-none-any.whl (133 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.3/133.3 kB 1.2 MB/s eta 0:00:00
+Collecting jsonschema==4.22.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 51))
+  Downloading http://mirrors.aliyun.com/pypi/packages/c8/2f/324fab4be6fe37fb7b521546e8a557e6cf08c1c1b3d0b4839a00f589d9ef/jsonschema-4.22.0-py3-none-any.whl (88 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 88.3/88.3 kB 1.1 MB/s eta 0:00:00
+Collecting jsonschema-specifications==2023.12.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 52))
+  Downloading http://mirrors.aliyun.com/pypi/packages/ee/07/44bd408781594c4d0a027666ef27fab1e441b109dc3b76b4f836f8fd04fe/jsonschema_specifications-2023.12.1-py3-none-any.whl (18 kB)
+Collecting jupyter-client==8.6.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 53))
+  Downloading http://mirrors.aliyun.com/pypi/packages/cf/d3/c4bb02580bc0db807edb9a29b2d0c56031be1ef0d804336deb2699a470f6/jupyter_client-8.6.2-py3-none-any.whl (105 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 105.9/105.9 kB 1.0 MB/s eta 0:00:00
+Collecting jupyter-core==5.7.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 54))
+  Downloading http://mirrors.aliyun.com/pypi/packages/c9/fb/108ecd1fe961941959ad0ee4e12ee7b8b1477247f30b1fdfd83ceaf017f0/jupyter_core-5.7.2-py3-none-any.whl (28 kB)
+Collecting kiwisolver==1.4.5 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 55))
+  Downloading http://mirrors.aliyun.com/pypi/packages/6f/40/4ab1fdb57fced80ce5903f04ae1aed7c1d5939dda4fd0c0aa526c12fe28a/kiwisolver-1.4.5-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 1.1 MB/s eta 0:00:00
+Collecting markdown-it-py==3.0.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 56))
+  Downloading http://mirrors.aliyun.com/pypi/packages/42/d7/1ec15b46af6af88f19b8e5ffea08fa375d433c998b8a7639e76935c14f1f/markdown_it_py-3.0.0-py3-none-any.whl (87 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.5/87.5 kB 1.0 MB/s eta 0:00:00
+Collecting markdown2==2.4.13 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 57))
+  Downloading http://mirrors.aliyun.com/pypi/packages/5a/09/a9ef8d5fe4b08bfd0dd133084deefcffc4b2a37a9ca35a22b48622d59262/markdown2-2.4.13-py2.py3-none-any.whl (41 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 41.3/41.3 kB 1.2 MB/s eta 0:00:00
+Collecting markupsafe==2.1.5 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 58))
+  Downloading http://mirrors.aliyun.com/pypi/packages/7c/52/2b1b570f6b8b803cef5ac28fdf78c0da318916c7d2fe9402a84d591b394c/MarkupSafe-2.1.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+Collecting matplotlib==3.9.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 59))
+  Downloading http://mirrors.aliyun.com/pypi/packages/32/ad/58902b481f5a294101a53ed964d68a2c2355d55622a8e9cb09fc3f517385/matplotlib-3.9.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (8.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.3/8.3 MB 1.1 MB/s eta 0:00:00
+Collecting matplotlib-inline==0.1.7 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 60))
+  Downloading http://mirrors.aliyun.com/pypi/packages/8f/8e/9ad090d3553c280a8060fbf6e24dc1c0c29704ee7d1c372f0c174aa59285/matplotlib_inline-0.1.7-py3-none-any.whl (9.9 kB)
+Collecting mdurl==0.1.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 61))
+  Downloading http://mirrors.aliyun.com/pypi/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Collecting mpmath==1.3.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 62))
+  Downloading http://mirrors.aliyun.com/pypi/packages/43/e3/7d92a15f894aa0c9c4b49b8ee9ac9850d6e63b03c9c32c0367a13ae62209/mpmath-1.3.0-py3-none-any.whl (536 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 1.1 MB/s eta 0:00:00
+Collecting multidict==6.0.5 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 63))
+  Downloading http://mirrors.aliyun.com/pypi/packages/33/62/2c9085e571318d51212a6914566fe41dd0e33d7f268f7e2f23dcd3f06c56/multidict-6.0.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (124 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 124.3/124.3 kB 1.1 MB/s eta 0:00:00
+Collecting nest-asyncio==1.6.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 64))
+  Downloading http://mirrors.aliyun.com/pypi/packages/a0/c4/c2971a3ba4c6103a3d10c4b0f24f461ddc027f0f09763220cf35ca1401b3/nest_asyncio-1.6.0-py3-none-any.whl (5.2 kB)
+Collecting networkx==3.3 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 65))
+  Downloading http://mirrors.aliyun.com/pypi/packages/38/e9/5f72929373e1a0e8d142a130f3f97e6ff920070f87f91c4e13e40e0fba5a/networkx-3.3-py3-none-any.whl (1.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 1.0 MB/s eta 0:00:00
+Collecting nh3==0.2.17 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 66))
+  Downloading http://mirrors.aliyun.com/pypi/packages/da/19/d52d9a0247007835df949f17abd904615248dc1b94d67cb8c99100330f08/nh3-0.2.17-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (777 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 777.1/777.1 kB 960.0 kB/s eta 0:00:00
+Collecting ninja==1.11.1.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 67))
+  Downloading http://mirrors.aliyun.com/pypi/packages/6d/92/8d7aebd4430ab5ff65df2bfee6d5745f95c004284db2d8ca76dcbfd9de47/ninja-1.11.1.1-py2.py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl (307 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 307.2/307.2 kB 906.7 kB/s eta 0:00:00
+Collecting numpy==1.26.4 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 68))
+  Downloading http://mirrors.aliyun.com/pypi/packages/4b/d7/ecf66c1cd12dc28b4040b15ab4d17b773b87fa9d29ca16125de01adb36cd/numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.2/18.2 MB 1.1 MB/s eta 0:00:00
+Collecting nvidia-cublas-cu12==12.1.3.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 69))
+  Downloading http://mirrors.aliyun.com/pypi/packages/37/6d/121efd7382d5b0284239f4ab1fc1590d86d34ed4a4a2fdb13b30ca8e5740/nvidia_cublas_cu12-12.1.3.1-py3-none-manylinux1_x86_64.whl (410.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 410.6/410.6 MB 1.1 MB/s eta 0:00:00
+Collecting nvidia-cuda-cupti-cu12==12.1.105 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 70))
+  Downloading http://mirrors.aliyun.com/pypi/packages/7e/00/6b218edd739ecfc60524e585ba8e6b00554dd908de2c9c66c1af3e44e18d/nvidia_cuda_cupti_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (14.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.1/14.1 MB 1.1 MB/s eta 0:00:00
+Collecting nvidia-cuda-nvrtc-cu12==12.1.105 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 71))
+  Downloading http://mirrors.aliyun.com/pypi/packages/b6/9f/c64c03f49d6fbc56196664d05dba14e3a561038a81a638eeb47f4d4cfd48/nvidia_cuda_nvrtc_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (23.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 23.7/23.7 MB 1.2 MB/s eta 0:00:00
+Collecting nvidia-cuda-runtime-cu12==12.1.105 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 72))
+  Downloading http://mirrors.aliyun.com/pypi/packages/eb/d5/c68b1d2cdfcc59e72e8a5949a37ddb22ae6cade80cd4a57a84d4c8b55472/nvidia_cuda_runtime_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (823 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 823.6/823.6 kB 1.1 MB/s eta 0:00:00
+Collecting nvidia-cudnn-cu12==8.9.2.26 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 73))
+  Downloading http://mirrors.aliyun.com/pypi/packages/ff/74/a2e2be7fb83aaedec84f391f082cf765dfb635e7caa9b49065f73e4835d8/nvidia_cudnn_cu12-8.9.2.26-py3-none-manylinux1_x86_64.whl (731.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 731.7/731.7 MB 1.1 MB/s eta 0:00:00
+Collecting nvidia-cufft-cu12==11.0.2.54 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 74))
+  Downloading http://mirrors.aliyun.com/pypi/packages/86/94/eb540db023ce1d162e7bea9f8f5aa781d57c65aed513c33ee9a5123ead4d/nvidia_cufft_cu12-11.0.2.54-py3-none-manylinux1_x86_64.whl (121.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 121.6/121.6 MB 1.2 MB/s eta 0:00:00
+Collecting nvidia-curand-cu12==10.3.2.106 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 75))
+  Downloading http://mirrors.aliyun.com/pypi/packages/44/31/4890b1c9abc496303412947fc7dcea3d14861720642b49e8ceed89636705/nvidia_curand_cu12-10.3.2.106-py3-none-manylinux1_x86_64.whl (56.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.5/56.5 MB 1.2 MB/s eta 0:00:00
+Collecting nvidia-cusolver-cu12==11.4.5.107 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 76))
+  Downloading http://mirrors.aliyun.com/pypi/packages/bc/1d/8de1e5c67099015c834315e333911273a8c6aaba78923dd1d1e25fc5f217/nvidia_cusolver_cu12-11.4.5.107-py3-none-manylinux1_x86_64.whl (124.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 124.2/124.2 MB 1.3 MB/s eta 0:00:00
+Collecting nvidia-cusparse-cu12==12.1.0.106 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 77))
+  Downloading http://mirrors.aliyun.com/pypi/packages/65/5b/cfaeebf25cd9fdec14338ccb16f6b2c4c7fa9163aefcf057d86b9cc248bb/nvidia_cusparse_cu12-12.1.0.106-py3-none-manylinux1_x86_64.whl (196.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 196.0/196.0 MB 1.4 MB/s eta 0:00:00
+Collecting nvidia-nccl-cu12==2.20.5 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 78))
+  Downloading http://mirrors.aliyun.com/pypi/packages/4b/2a/0a131f572aa09f741c30ccd45a8e56316e8be8dfc7bc19bf0ab7cfef7b19/nvidia_nccl_cu12-2.20.5-py3-none-manylinux2014_x86_64.whl (176.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 176.2/176.2 MB 1.4 MB/s eta 0:00:00
+Collecting nvidia-nvjitlink-cu12==12.5.82 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 79))
+  Downloading http://mirrors.aliyun.com/pypi/packages/75/bc/e0d0dbb85246a086ab14839979039647bce501d8c661a159b8b019d987b7/nvidia_nvjitlink_cu12-12.5.82-py3-none-manylinux2014_x86_64.whl (21.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.3/21.3 MB 1.5 MB/s eta 0:00:00
+Collecting nvidia-nvtx-cu12==12.1.105 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 80))
+  Downloading http://mirrors.aliyun.com/pypi/packages/da/d3/8057f0587683ed2fcd4dbfbdfdfa807b9160b809976099d36b8f60d08f03/nvidia_nvtx_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (99 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 99.1/99.1 kB 1.4 MB/s eta 0:00:00
+Collecting nvtx==0.2.10 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 81))
+  Downloading http://mirrors.aliyun.com/pypi/packages/39/cd/fddc8ce8d95d253a38f5a55d671a0d001f4ce3aa2a8b4498e1c16df968bc/nvtx-0.2.10-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (582 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 582.6/582.6 kB 1.4 MB/s eta 0:00:00
+Collecting openai==0.28.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 82))
+  Downloading http://mirrors.aliyun.com/pypi/packages/ae/59/911d6e5f1d7514d79c527067643376cddcf4cb8d1728e599b3b03ab51c69/openai-0.28.0-py3-none-any.whl (76 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 76.5/76.5 kB 1.4 MB/s eta 0:00:00
+Collecting orjson==3.10.6 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 83))
+  Downloading http://mirrors.aliyun.com/pypi/packages/36/06/f5e0d6a921af2feae3c189514ebe12a6b8ab59ffe92c855996bcb4e6aa7f/orjson-3.10.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (141 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 141.1/141.1 kB 1.4 MB/s eta 0:00:00
+Collecting packaging==24.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 84))
+  Downloading http://mirrors.aliyun.com/pypi/packages/08/aa/cc0199a5f0ad350994d660967a8efb233fe0416e4639146c089643407ce6/packaging-24.1-py3-none-any.whl (53 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 54.0/54.0 kB 1.5 MB/s eta 0:00:00
+Collecting pandas==2.2.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 85))
+  Downloading http://mirrors.aliyun.com/pypi/packages/89/1b/12521efcbc6058e2673583bb096c2b5046a9df39bd73eca392c1efed24e5/pandas-2.2.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.0/13.0 MB 1.3 MB/s eta 0:00:00
+Collecting parso==0.8.4 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 86))
+  Downloading http://mirrors.aliyun.com/pypi/packages/c6/ac/dac4a63f978e4dcb3c6d3a78c4d8e0192a113d288502a1216950c41b1027/parso-0.8.4-py2.py3-none-any.whl (103 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 103.7/103.7 kB 1.4 MB/s eta 0:00:00
+Collecting peft==0.11.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 87))
+  Downloading http://mirrors.aliyun.com/pypi/packages/19/99/c5e0292a6d2a62e95c3dfe674ce9e8f8a9fe5d4835d3c9bb9b3e016f02ae/peft-0.11.1-py3-none-any.whl (251 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 251.6/251.6 kB 1.5 MB/s eta 0:00:00
+Collecting pexpect==4.9.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 88))
+  Downloading http://mirrors.aliyun.com/pypi/packages/9e/c3/059298687310d527a58bb01f3b1965787ee3b40dce76752eda8b44e9a2c5/pexpect-4.9.0-py2.py3-none-any.whl (63 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.8/63.8 kB 1.4 MB/s eta 0:00:00
+Collecting pillow==10.4.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 89))
+  Downloading http://mirrors.aliyun.com/pypi/packages/b5/5b/6651c288b08df3b8c1e2f8c1152201e0b25d240e22ddade0f1e242fc9fa0/pillow-10.4.0-cp310-cp310-manylinux_2_28_x86_64.whl (4.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.5/4.5 MB 1.5 MB/s eta 0:00:00
+Collecting platformdirs==4.2.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 90))
+  Downloading http://mirrors.aliyun.com/pypi/packages/68/13/2aa1f0e1364feb2c9ef45302f387ac0bd81484e9c9a4c5688a322fbdfd08/platformdirs-4.2.2-py3-none-any.whl (18 kB)
+Collecting prompt-toolkit==3.0.47 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 91))
+  Downloading http://mirrors.aliyun.com/pypi/packages/e8/23/22750c4b768f09386d1c3cc4337953e8936f48a888fa6dddfb669b2c9088/prompt_toolkit-3.0.47-py3-none-any.whl (386 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 386.4/386.4 kB 1.5 MB/s eta 0:00:00
+Collecting protobuf==5.27.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 92))
+  Downloading http://mirrors.aliyun.com/pypi/packages/27/e4/8dc4546be46873f8950cb44cdfe19b79d66d26e53c4ee5e3440406257fcd/protobuf-5.27.2-cp38-abi3-manylinux2014_x86_64.whl (309 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 309.3/309.3 kB 1.5 MB/s eta 0:00:00
+Collecting psutil==6.0.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 93))
+  Downloading http://mirrors.aliyun.com/pypi/packages/19/74/f59e7e0d392bc1070e9a70e2f9190d652487ac115bb16e2eff6b22ad1d24/psutil-6.0.0-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (290 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 290.5/290.5 kB 1.5 MB/s eta 0:00:00
+Collecting ptyprocess==0.7.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 94))
+  Downloading http://mirrors.aliyun.com/pypi/packages/22/a6/858897256d0deac81a172289110f31629fc4cee19b6f01283303e18c8db3/ptyprocess-0.7.0-py2.py3-none-any.whl (13 kB)
+Collecting pure-eval==0.2.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 95))
+  Downloading http://mirrors.aliyun.com/pypi/packages/2b/27/77f9d5684e6bce929f5cfe18d6cfbe5133013c06cb2fbf5933670e60761d/pure_eval-0.2.2-py3-none-any.whl (11 kB)
+Collecting pydantic==2.8.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 96))
+  Downloading http://mirrors.aliyun.com/pypi/packages/1f/fa/b7f815b8c9ad021c07f88875b601222ef5e70619391ade4a49234d12d278/pydantic-2.8.2-py3-none-any.whl (423 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 423.9/423.9 kB 531.7 kB/s eta 0:00:00
+Collecting pydantic-core==2.20.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 97))
+  Downloading http://mirrors.aliyun.com/pypi/packages/ae/49/8a6fe79d35e2f3bea566d8ea0e4e6f436d4f749d7838c8e8c4c5148ae706/pydantic_core-2.20.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 1.5 MB/s eta 0:00:00
+Collecting pydub==0.25.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 98))
+  Downloading http://mirrors.aliyun.com/pypi/packages/a6/53/d78dc063216e62fc55f6b2eebb447f6a4b0a59f55c8406376f76bf959b08/pydub-0.25.1-py2.py3-none-any.whl (32 kB)
+Collecting pygments==2.18.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 99))
+  Downloading http://mirrors.aliyun.com/pypi/packages/f7/3f/01c8b82017c199075f8f788d0d906b9ffbbc5a47dc9918a945e13d5a2bda/pygments-2.18.0-py3-none-any.whl (1.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 1.5 MB/s eta 0:00:00
+Collecting pyparsing==3.1.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 100))
+  Downloading http://mirrors.aliyun.com/pypi/packages/9d/ea/6d76df31432a0e6fdf81681a895f009a4bb47b3c39036db3e1b528191d52/pyparsing-3.1.2-py3-none-any.whl (103 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 103.2/103.2 kB 1.3 MB/s eta 0:00:00
+Collecting python-dateutil==2.9.0.post0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 101))
+  Downloading http://mirrors.aliyun.com/pypi/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 1.4 MB/s eta 0:00:00
+Collecting python-dotenv==1.0.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 102))
+  Downloading http://mirrors.aliyun.com/pypi/packages/6a/3e/b68c118422ec867fa7ab88444e1274aa40681c606d59ac27de5a5588f082/python_dotenv-1.0.1-py3-none-any.whl (19 kB)
+Collecting python-multipart==0.0.9 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 103))
+  Downloading http://mirrors.aliyun.com/pypi/packages/3d/47/444768600d9e0ebc82f8e347775d24aef8f6348cf00e9fa0e81910814e6d/python_multipart-0.0.9-py3-none-any.whl (22 kB)
+Collecting pytz==2024.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 104))
+  Downloading http://mirrors.aliyun.com/pypi/packages/9c/3d/a121f284241f08268b21359bd425f7d4825cffc5ac5cd0e1b3d82ffd2b10/pytz-2024.1-py2.py3-none-any.whl (505 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 505.5/505.5 kB 1.5 MB/s eta 0:00:00
+Collecting pyyaml==6.0.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 105))
+  Downloading http://mirrors.aliyun.com/pypi/packages/29/61/bf33c6c85c55bc45a29eee3195848ff2d518d84735eb0e2d8cb42e0d285e/PyYAML-6.0.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (705 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 705.5/705.5 kB 1.5 MB/s eta 0:00:00
+Collecting pyzmq==26.0.3 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 106))
+  Downloading http://mirrors.aliyun.com/pypi/packages/40/4f/088d0fe18b188a0754483b7d632a97ef608dce80c2648219d071c9f1715c/pyzmq-26.0.3-cp310-cp310-manylinux_2_28_x86_64.whl (919 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 919.8/919.8 kB 1.4 MB/s eta 0:00:00
+Collecting redis==5.0.7 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 107))
+  Downloading http://mirrors.aliyun.com/pypi/packages/2f/3b/db091387f25c202a34030de8f7fee26a69c11b83797eecaef5b06e261966/redis-5.0.7-py3-none-any.whl (252 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 252.1/252.1 kB 1.3 MB/s eta 0:00:00
+Collecting referencing==0.35.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 108))
+  Downloading http://mirrors.aliyun.com/pypi/packages/b7/59/2056f61236782a2c86b33906c025d4f4a0b17be0161b63b70fd9e8775d36/referencing-0.35.1-py3-none-any.whl (26 kB)
+Collecting regex==2024.5.15 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 109))
+  Downloading http://mirrors.aliyun.com/pypi/packages/07/17/5d92509b4dccacf9767d8607112c19667e15db2428014440bae4356b8aff/regex-2024.5.15-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (775 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 775.1/775.1 kB 1.4 MB/s eta 0:00:00
+Collecting requests==2.32.3 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 110))
+  Downloading http://mirrors.aliyun.com/pypi/packages/f9/9b/335f9764261e915ed497fcdeb11df5dfd6f7bf257d4a6a2a686d80da4d54/requests-2.32.3-py3-none-any.whl (64 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 64.9/64.9 kB 1.3 MB/s eta 0:00:00
+Collecting rich==13.7.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 111))
+  Downloading http://mirrors.aliyun.com/pypi/packages/87/67/a37f6214d0e9fe57f6ae54b2956d550ca8365857f42a1ce0392bb21d9410/rich-13.7.1-py3-none-any.whl (240 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 240.7/240.7 kB 1.3 MB/s eta 0:00:00
+Collecting rpds-py==0.18.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 112))
+  Downloading http://mirrors.aliyun.com/pypi/packages/e5/20/10c12b1acb102c4981a7e1dc86b60e36c1d5c940a7bda48643542f80dbff/rpds_py-0.18.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 1.3 MB/s eta 0:00:00
+Collecting ruff==0.5.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 113))
+  Downloading http://mirrors.aliyun.com/pypi/packages/8a/d5/8271d42dd239b7c2d163615b3b01b1acfb187f5114bfca6d5a85e1d6a1eb/ruff-0.5.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.1/10.1 MB 1.3 MB/s eta 0:00:00
+Collecting safetensors==0.4.3 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 114))
+  Downloading http://mirrors.aliyun.com/pypi/packages/8f/05/969e1a976b84283285181b00028cf73d78434b77a6627fc2a94194cca265/safetensors-0.4.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 1.5 MB/s eta 0:00:00
+Collecting semantic-version==2.10.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 115))
+  Downloading http://mirrors.aliyun.com/pypi/packages/6a/23/8146aad7d88f4fcb3a6218f41a60f6c2d4e3a72de72da1825dc7c8f7877c/semantic_version-2.10.0-py2.py3-none-any.whl (15 kB)
+Collecting sentencepiece==0.2.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 116))
+  Downloading http://mirrors.aliyun.com/pypi/packages/a6/27/33019685023221ca8ed98e8ceb7ae5e166032686fa3662c68f1f1edf334e/sentencepiece-0.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 1.4 MB/s eta 0:00:00
+Collecting sentry-sdk==2.7.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 117))
+  Downloading http://mirrors.aliyun.com/pypi/packages/90/6a/a7d19d776ba9899c97acb223ceba4080ef9f5de9d7599203ae64b56ed597/sentry_sdk-2.7.1-py2.py3-none-any.whl (300 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 300.2/300.2 kB 1.5 MB/s eta 0:00:00
+Collecting setproctitle==1.3.3 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 118))
+  Downloading http://mirrors.aliyun.com/pypi/packages/79/e7/54b36be02aee8ad573be68f6f46fd62838735c2f007b22df50eb5e13a20d/setproctitle-1.3.3-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (30 kB)
+Collecting shellingham==1.5.4 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 119))
+  Downloading http://mirrors.aliyun.com/pypi/packages/e0/f9/0595336914c5619e5f28a1fb793285925a8cd4b432c9da0a987836c7f822/shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+Collecting shortuuid==1.0.13 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 120))
+  Downloading http://mirrors.aliyun.com/pypi/packages/c0/44/21d6bf170bf40b41396480d8d49ad640bca3f2b02139cd52aa1e272830a5/shortuuid-1.0.13-py3-none-any.whl (10 kB)
+Collecting six==1.16.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 121))
+  Downloading http://mirrors.aliyun.com/pypi/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl (11 kB)
+Collecting smmap==5.0.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 122))
+  Downloading http://mirrors.aliyun.com/pypi/packages/a7/a5/10f97f73544edcdef54409f1d839f6049a0d79df68adbc1ceb24d1aaca42/smmap-5.0.1-py3-none-any.whl (24 kB)
+Collecting sniffio==1.3.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 123))
+  Downloading http://mirrors.aliyun.com/pypi/packages/e9/44/75a9c9421471a6c4805dbf2356f7c181a29c1879239abab1ea2cc8f38b40/sniffio-1.3.1-py3-none-any.whl (10 kB)
+Collecting stack-data==0.6.3 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 124))
+  Downloading http://mirrors.aliyun.com/pypi/packages/f1/7b/ce1eafaf1a76852e2ec9b22edecf1daa58175c090266e9f6c64afcd81d91/stack_data-0.6.3-py3-none-any.whl (24 kB)
+Collecting starlette==0.37.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 125))
+  Downloading http://mirrors.aliyun.com/pypi/packages/fd/18/31fa32ed6c68ba66220204ef0be798c349d0a20c1901f9d4a794e08c76d8/starlette-0.37.2-py3-none-any.whl (71 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 71.9/71.9 kB 1.3 MB/s eta 0:00:00
+Collecting svgwrite==1.4.3 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 126))
+  Downloading http://mirrors.aliyun.com/pypi/packages/84/15/640e399579024a6875918839454025bb1d5f850bb70d96a11eabb644d11c/svgwrite-1.4.3-py3-none-any.whl (67 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 67.1/67.1 kB 1.4 MB/s eta 0:00:00
+Collecting sympy==1.12.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 127))
+  Downloading http://mirrors.aliyun.com/pypi/packages/61/53/e18c8c97d0b2724d85c9830477e3ebea3acf1dcdc6deb344d5d9c93a9946/sympy-1.12.1-py3-none-any.whl (5.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.7/5.7 MB 1.4 MB/s eta 0:00:00
+Collecting tiktoken==0.7.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 128))
+  Downloading http://mirrors.aliyun.com/pypi/packages/e7/8c/7d1007557b343d5cf18349802e94d3a14397121e9105b4661f8cd753f9bf/tiktoken-0.7.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 1.4 MB/s eta 0:00:00
+Collecting tokenizers==0.19.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 129))
+  Downloading http://mirrors.aliyun.com/pypi/packages/40/4f/eb78de4af3b17b589f43a369cbf0c3a7173f25c3d2cd93068852c07689aa/tokenizers-0.19.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.6/3.6 MB 1.4 MB/s eta 0:00:00
+Collecting tomlkit==0.12.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 130))
+  Downloading http://mirrors.aliyun.com/pypi/packages/68/4f/12207897848a653d03ebbf6775a29d949408ded5f99b2d87198bc5c93508/tomlkit-0.12.0-py3-none-any.whl (37 kB)
+Collecting toolz==0.12.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 131))
+  Downloading http://mirrors.aliyun.com/pypi/packages/b7/8a/d82202c9f89eab30f9fc05380daae87d617e2ad11571ab23d7c13a29bb54/toolz-0.12.1-py3-none-any.whl (56 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.1/56.1 kB 1.3 MB/s eta 0:00:00
+Collecting torch==2.3.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 132))
+  Downloading http://mirrors.aliyun.com/pypi/packages/cb/e2/1bd899d3eb60c6495cf5d0d2885edacac08bde7a1407eadeb2ab36eca3c7/torch-2.3.1-cp310-cp310-manylinux1_x86_64.whl (779.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 779.1/779.1 MB 1.4 MB/s eta 0:00:00
+Collecting torchac==0.9.3 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 133))
+  Downloading http://mirrors.aliyun.com/pypi/packages/20/e7/a3be37b21dc79978901cbb1aa60327e4d973d195de8969c285aa4e57398a/torchac-0.9.3-py3-none-any.whl (22 kB)
+Collecting tornado==6.4.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 134))
+  Downloading http://mirrors.aliyun.com/pypi/packages/22/d4/54f9d12668b58336bd30defe0307e6c61589a3e687b05c366f804b7faaf0/tornado-6.4.1-cp38-abi3-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (436 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 436.8/436.8 kB 1.6 MB/s eta 0:00:00
+Collecting tqdm==4.66.4 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 135))
+  Downloading http://mirrors.aliyun.com/pypi/packages/18/eb/fdb7eb9e48b7b02554e1664afd3bd3f117f6b6d6c5881438a0b055554f9b/tqdm-4.66.4-py3-none-any.whl (78 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.3/78.3 kB 1.5 MB/s eta 0:00:00
+Collecting traitlets==5.14.3 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 136))
+  Downloading http://mirrors.aliyun.com/pypi/packages/00/c0/8f5d070730d7836adc9c9b6408dec68c6ced86b304a9b26a14df072a6e8c/traitlets-5.14.3-py3-none-any.whl (85 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 85.4/85.4 kB 1.4 MB/s eta 0:00:00
+Collecting transformers==4.42.3 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 137))
+  Downloading http://mirrors.aliyun.com/pypi/packages/20/5c/244db59e074e80248fdfa60495eeee257e4d97c3df3487df68be30cd60c8/transformers-4.42.3-py3-none-any.whl (9.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.3/9.3 MB 1.6 MB/s eta 0:00:00
+Collecting triton==2.3.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 138))
+  Downloading http://mirrors.aliyun.com/pypi/packages/d7/69/8a9fde07d2d27a90e16488cdfe9878e985a247b2496a4b5b1a2126042528/triton-2.3.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (168.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 168.1/168.1 MB 1.6 MB/s eta 0:00:00
+Collecting typer==0.12.3 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 139))
+  Downloading http://mirrors.aliyun.com/pypi/packages/20/b5/11cf2e34fbb11b937e006286ab5b8cfd334fde1c8fa4dd7f491226931180/typer-0.12.3-py3-none-any.whl (47 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 47.2/47.2 kB 1.6 MB/s eta 0:00:00
+Collecting typing-extensions==4.12.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 140))
+  Downloading http://mirrors.aliyun.com/pypi/packages/26/9f/ad63fc0248c5379346306f8668cda6e2e2e9c95e01216d2b8ffd9ff037d0/typing_extensions-4.12.2-py3-none-any.whl (37 kB)
+Collecting tzdata==2024.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 141))
+  Downloading http://mirrors.aliyun.com/pypi/packages/65/58/f9c9e6be752e9fcb8b6a0ee9fb87e6e7a1f6bcab2cdc73f02bb7ba91ada0/tzdata-2024.1-py2.py3-none-any.whl (345 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 345.4/345.4 kB 1.6 MB/s eta 0:00:00
+Collecting ujson==5.10.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 142))
+  Downloading http://mirrors.aliyun.com/pypi/packages/b4/6d/0df8f7a6f1944ba619d93025ce468c9252aa10799d7140e07014dfc1a16c/ujson-5.10.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (53 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 53.6/53.6 kB 1.6 MB/s eta 0:00:00
+Collecting urllib3==2.2.2 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 143))
+  Downloading http://mirrors.aliyun.com/pypi/packages/ca/1c/89ffc63a9605b583d5df2be791a27bc1a42b7c32bab68d3c8f2f73a98cd4/urllib3-2.2.2-py3-none-any.whl (121 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 121.4/121.4 kB 1.5 MB/s eta 0:00:00
+Collecting uvicorn==0.30.1 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 144))
+  Downloading http://mirrors.aliyun.com/pypi/packages/b2/f9/e6f30ba6094733e4f9794fd098ca0543a19b07ac1fa3075d595bf0f1fb60/uvicorn-0.30.1-py3-none-any.whl (62 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.4/62.4 kB 1.5 MB/s eta 0:00:00
+Collecting uvloop==0.19.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 145))
+  Downloading http://mirrors.aliyun.com/pypi/packages/ab/ed/12729fba5e3b7e02ee70b3ea230b88e60a50375cf63300db22607694d2f0/uvloop-0.19.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.4 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 1.7 MB/s eta 0:00:00
+Collecting wandb==0.17.4 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 146))
+  Downloading http://mirrors.aliyun.com/pypi/packages/98/08/fbd9f14b414c08a0b8376490f9877ce12e2bfe7a5b3cde3ba3e5a86d7f9d/wandb-0.17.4-py3-none-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (6.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.9/6.9 MB 1.6 MB/s eta 0:00:00
+Collecting watchfiles==0.22.0 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 147))
+  Downloading http://mirrors.aliyun.com/pypi/packages/3d/ae/e7eddbdca559f14a9a38cf04782a5d715cf350aad498d0862fb02b4ebe10/watchfiles-0.22.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 1.6 MB/s eta 0:00:00
+Collecting wavedrom==2.0.3.post3 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 148))
+  Downloading http://mirrors.aliyun.com/pypi/packages/be/71/6739e3abac630540aaeaaece4584c39f88b5f8658ce6ca517efec455e3de/wavedrom-2.0.3.post3.tar.gz (137 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 137.7/137.7 kB 1.6 MB/s eta 0:00:00
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting wcwidth==0.2.13 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 149))
+  Downloading http://mirrors.aliyun.com/pypi/packages/fd/84/fd2ba7aafacbad3c4201d395674fc6348826569da3c0937e75505ead3528/wcwidth-0.2.13-py2.py3-none-any.whl (34 kB)
+Collecting websockets==11.0.3 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 150))
+  Downloading http://mirrors.aliyun.com/pypi/packages/58/0a/7570e15661a0a546c3a1152d95fe8c05480459bab36247f0acbf41f01a41/websockets-11.0.3-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (129 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 129.9/129.9 kB 1.2 MB/s eta 0:00:00
+Collecting yarl==1.9.4 (from -r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 151))
+  Downloading http://mirrors.aliyun.com/pypi/packages/c3/a0/0ade1409d184cbc9e85acd403a386a7c0563b92ff0f26d138ff9e86e48b4/yarl-1.9.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (301 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 301.6/301.6 kB 1.3 MB/s eta 0:00:00
+Requirement already satisfied: setuptools in /root/miniconda3/envs/cachegen/lib/python3.10/site-packages (from wandb==0.17.4->-r /root/CacheGen/condaenv.33gmb2i_.requirements.txt (line 146)) (69.5.1)
+Building wheels for collected packages: ffmpy, wavedrom
+  Building wheel for ffmpy (setup.py): started
+  Building wheel for ffmpy (setup.py): finished with status 'done'
+  Created wheel for ffmpy: filename=ffmpy-0.3.2-py3-none-any.whl size=5584 sha256=217fbbc9016dac22c564bc16f1170479fb36015b50ba943b12d699ddd3b69112
+  Stored in directory: /root/.cache/pip/wheels/f1/33/b9/967f1c6df43a4e6759a80bcc23e335ad8ea0d3c7be950bdcc7
+  Building wheel for wavedrom (setup.py): started
+  Building wheel for wavedrom (setup.py): finished with status 'done'
+  Created wheel for wavedrom: filename=wavedrom-2.0.3.post3-py2.py3-none-any.whl size=30055 sha256=5f5e9501af539abc0a6d5825572f8a06233adce810cf8709bb828305bffc08be
+  Stored in directory: /root/.cache/pip/wheels/35/e4/3d/dd2fce55e02befe8a1d358f1ac4445267fd4fa90eebcc809ad
+Successfully built ffmpy wavedrom
+Installing collected packages: wcwidth, sentencepiece, pytz, pydub, pure-eval, ptyprocess, nvtx, ninja, nh3, mpmath, ffmpy, cpm-kernels, websockets, uvloop, urllib3, ujson, tzdata, typing-extensions, traitlets, tqdm, tornado, torchac, toolz, tomlkit, sympy, svgwrite, sniffio, smmap, six, shortuuid, shellingham, setproctitle, semantic-version, safetensors, ruff, rpds-py, regex, pyzmq, pyyaml, python-multipart, python-dotenv, pyparsing, pygments, psutil, protobuf, prompt-toolkit, platformdirs, pillow, pexpect, parso, packaging, orjson, nvidia-nvtx-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufft-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, numpy, networkx, nest-asyncio, multidict, mdurl, markupsafe, markdown2, kiwisolver, importlib-resources, idna, httptools, h11, fsspec, frozenlist, fonttools, filelock, executing, exceptiongroup, einops, dnspython, distro, decorator, debugpy, cycler, click, charset-normalizer, certifi, attrs, async-timeout, annotated-types, aiofiles, yarl, wavedrom, uvicorn, triton, sentry-sdk, requests, referencing, redis, python-dateutil, pydantic-core, nvidia-cusparse-cu12, nvidia-cudnn-cu12, matplotlib-inline, markdown-it-py, jupyter-core, jinja2, jedi, httpcore, gitdb, email-validator, docker-pycreds, contourpy, comm, asttokens, anyio, aiosignal, watchfiles, tiktoken, starlette, stack-data, rich, pydantic, pandas, nvidia-cusolver-cu12, matplotlib, jupyter-client, jsonschema-specifications, huggingface-hub, httpx, gitpython, aiohttp, wandb, typer, torch, tokenizers, openai, jsonschema, ipython, gradio-client, transformers, ipykernel, fastapi-cli, bitsandbytes, altair, accelerate, peft, fastapi, gradio, fschat
+Successfully installed accelerate-0.32.1 aiofiles-23.2.1 aiohttp-3.9.5 aiosignal-1.3.1 altair-5.3.0 annotated-types-0.7.0 anyio-4.4.0 asttokens-2.4.1 async-timeout-4.0.3 attrs-23.2.0 bitsandbytes-0.43.3 certifi-2024.7.4 charset-normalizer-3.3.2 click-8.1.7 comm-0.2.2 contourpy-1.2.1 cpm-kernels-1.0.11 cycler-0.12.1 debugpy-1.8.2 decorator-5.1.1 distro-1.9.0 dnspython-2.6.1 docker-pycreds-0.4.0 einops-0.8.0 email-validator-2.2.0 exceptiongroup-1.2.1 executing-2.0.1 fastapi-0.111.0 fastapi-cli-0.0.4 ffmpy-0.3.2 filelock-3.15.4 fonttools-4.53.1 frozenlist-1.4.1 fschat-0.2.36 fsspec-2024.6.1 gitdb-4.0.11 gitpython-3.1.43 gradio-4.37.2 gradio-client-1.0.2 h11-0.14.0 httpcore-1.0.5 httptools-0.6.1 httpx-0.27.0 huggingface-hub-0.23.4 idna-3.7 importlib-resources-6.4.0 ipykernel-6.29.5 ipython-8.26.0 jedi-0.19.1 jinja2-3.1.4 jsonschema-4.22.0 jsonschema-specifications-2023.12.1 jupyter-client-8.6.2 jupyter-core-5.7.2 kiwisolver-1.4.5 markdown-it-py-3.0.0 markdown2-2.4.13 markupsafe-2.1.5 matplotlib-3.9.1 matplotlib-inline-0.1.7 mdurl-0.1.2 mpmath-1.3.0 multidict-6.0.5 nest-asyncio-1.6.0 networkx-3.3 nh3-0.2.17 ninja-1.11.1.1 numpy-1.26.4 nvidia-cublas-cu12-12.1.3.1 nvidia-cuda-cupti-cu12-12.1.105 nvidia-cuda-nvrtc-cu12-12.1.105 nvidia-cuda-runtime-cu12-12.1.105 nvidia-cudnn-cu12-8.9.2.26 nvidia-cufft-cu12-11.0.2.54 nvidia-curand-cu12-10.3.2.106 nvidia-cusolver-cu12-11.4.5.107 nvidia-cusparse-cu12-12.1.0.106 nvidia-nccl-cu12-2.20.5 nvidia-nvjitlink-cu12-12.5.82 nvidia-nvtx-cu12-12.1.105 nvtx-0.2.10 openai-0.28.0 orjson-3.10.6 packaging-24.1 pandas-2.2.2 parso-0.8.4 peft-0.11.1 pexpect-4.9.0 pillow-10.4.0 platformdirs-4.2.2 prompt-toolkit-3.0.47 protobuf-5.27.2 psutil-6.0.0 ptyprocess-0.7.0 pure-eval-0.2.2 pydantic-2.8.2 pydantic-core-2.20.1 pydub-0.25.1 pygments-2.18.0 pyparsing-3.1.2 python-dateutil-2.9.0.post0 python-dotenv-1.0.1 python-multipart-0.0.9 pytz-2024.1 pyyaml-6.0.1 pyzmq-26.0.3 redis-5.0.7 referencing-0.35.1 regex-2024.5.15 requests-2.32.3 rich-13.7.1 rpds-py-0.18.1 ruff-0.5.1 safetensors-0.4.3 semantic-version-2.10.0 sentencepiece-0.2.0 sentry-sdk-2.7.1 setproctitle-1.3.3 shellingham-1.5.4 shortuuid-1.0.13 six-1.16.0 smmap-5.0.1 sniffio-1.3.1 stack-data-0.6.3 starlette-0.37.2 svgwrite-1.4.3 sympy-1.12.1 tiktoken-0.7.0 tokenizers-0.19.1 tomlkit-0.12.0 toolz-0.12.1 torch-2.3.1 torchac-0.9.3 tornado-6.4.1 tqdm-4.66.4 traitlets-5.14.3 transformers-4.42.3 triton-2.3.1 typer-0.12.3 typing-extensions-4.12.2 tzdata-2024.1 ujson-5.10.0 urllib3-2.2.2 uvicorn-0.30.1 uvloop-0.19.0 wandb-0.17.4 watchfiles-0.22.0 wavedrom-2.0.3.post3 wcwidth-0.2.13 websockets-11.0.3 yarl-1.9.4
+
+done
+#
+# To activate this environment, use
+#
+#     $ conda activate cachegen
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+root@autodl-container-690911b33c-d8271f5a:~/CacheGen# 
+
+
+
+
+
+
+
+
+
+
+(cachegen) root@autodl-container-690911b33c-d8271f5a:~/CacheGen/LMCache/third_party/torchac_cuda# python setup.py install
+running install
+/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+!!
+
+        ********************************************************************************
+        Please avoid running ``setup.py`` directly.
+        Instead, use pypa/build, pypa/installer or other
+        standards-based tools.
+
+        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+        ********************************************************************************
+
+!!
+  self.initialize_options()
+/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/setuptools/_distutils/cmd.py:66: EasyInstallDeprecationWarning: easy_install command is deprecated.
+!!
+
+        ********************************************************************************
+        Please avoid running ``setup.py`` and ``easy_install``.
+        Instead, use pypa/build, pypa/installer or other
+        standards-based tools.
+
+        See https://github.com/pypa/setuptools/issues/917 for details.
+        ********************************************************************************
+
+!!
+  self.initialize_options()
+running bdist_egg
+running egg_info
+creating torchac_cuda.egg-info
+writing torchac_cuda.egg-info/PKG-INFO
+writing dependency_links to torchac_cuda.egg-info/dependency_links.txt
+writing top-level names to torchac_cuda.egg-info/top_level.txt
+writing manifest file 'torchac_cuda.egg-info/SOURCES.txt'
+reading manifest file 'torchac_cuda.egg-info/SOURCES.txt'
+writing manifest file 'torchac_cuda.egg-info/SOURCES.txt'
+installing library code to build/bdist.linux-x86_64/egg
+running install_lib
+running build_ext
+/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/utils/cpp_extension.py:418: UserWarning: The detected CUDA version (12.4) has a minor version mismatch with the version that was used to compile PyTorch (12.1). Most likely this shouldn't be a problem.
+  warnings.warn(CUDA_MISMATCH_WARN.format(cuda_str_version, torch.version.cuda))
+/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/utils/cpp_extension.py:428: UserWarning: There are no /root/miniconda3/envs/cachegen/bin/x86_64-conda-linux-gnu-c++ version bounds defined for CUDA version 12.4
+  warnings.warn(f'There are no {compiler_name} version bounds defined for CUDA version {cuda_str_version}')
+building 'torchac_cuda' extension
+creating /root/CacheGen/LMCache/third_party/torchac_cuda/build
+creating /root/CacheGen/LMCache/third_party/torchac_cuda/build/temp.linux-x86_64-cpython-310
+/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/utils/cpp_extension.py:1967: UserWarning: TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'].
+  warnings.warn(
+Emitting ninja build file /root/CacheGen/LMCache/third_party/torchac_cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[1/4] /root/miniconda3/envs/cachegen/bin/x86_64-conda-linux-gnu-c++ -MMD -MF /root/CacheGen/LMCache/third_party/torchac_cuda/build/temp.linux-x86_64-cpython-310/main.o.d -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /root/miniconda3/envs/cachegen/include -fPIC -O2 -isystem /root/miniconda3/envs/cachegen/include -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /root/miniconda3/envs/cachegen/include -I/root/miniconda3/envs/cachegen/targets/x86_64-linux/include -L/root/miniconda3/envs/cachegen/targets/x86_64-linux/lib -L/root/miniconda3/envs/cachegen/targets/x86_64-linux/lib/stubs -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /root/miniconda3/envs/cachegen/include -I/root/miniconda3/envs/cachegen/targets/x86_64-linux/include -L/root/miniconda3/envs/cachegen/targets/x86_64-linux/lib -L/root/miniconda3/envs/cachegen/targets/x86_64-linux/lib/stubs -fPIC -I./include -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include/TH -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include/THC -I/root/miniconda3/envs/cachegen/include -I/root/miniconda3/envs/cachegen/include/python3.10 -c -c /root/CacheGen/LMCache/third_party/torchac_cuda/main.cpp -o /root/CacheGen/LMCache/third_party/torchac_cuda/build/temp.linux-x86_64-cpython-310/main.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=torchac_cuda -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++17
+[2/4] /root/miniconda3/envs/cachegen/bin/nvcc --generate-dependencies-with-compile --dependency-output /root/CacheGen/LMCache/third_party/torchac_cuda/build/temp.linux-x86_64-cpython-310/torchac_kernel_enc_new.o.d -I./include -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include/TH -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include/THC -I/root/miniconda3/envs/cachegen/include -I/root/miniconda3/envs/cachegen/include/python3.10 -c -c /root/CacheGen/LMCache/third_party/torchac_cuda/torchac_kernel_enc_new.cu -o /root/CacheGen/LMCache/third_party/torchac_cuda/build/temp.linux-x86_64-cpython-310/torchac_kernel_enc_new.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=torchac_cuda -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_86,code=compute_86 -gencode=arch=compute_86,code=sm_86 -ccbin /root/miniconda3/envs/cachegen/bin/x86_64-conda-linux-gnu-cc -std=c++17
+nvcc warning : incompatible redefinition for option 'compiler-bindir', the last value of this option was used
+[3/4] /root/miniconda3/envs/cachegen/bin/nvcc --generate-dependencies-with-compile --dependency-output /root/CacheGen/LMCache/third_party/torchac_cuda/build/temp.linux-x86_64-cpython-310/torchac_kernel_dec_new.o.d -I./include -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include/TH -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include/THC -I/root/miniconda3/envs/cachegen/include -I/root/miniconda3/envs/cachegen/include/python3.10 -c -c /root/CacheGen/LMCache/third_party/torchac_cuda/torchac_kernel_dec_new.cu -o /root/CacheGen/LMCache/third_party/torchac_cuda/build/temp.linux-x86_64-cpython-310/torchac_kernel_dec_new.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=torchac_cuda -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_86,code=compute_86 -gencode=arch=compute_86,code=sm_86 -ccbin /root/miniconda3/envs/cachegen/bin/x86_64-conda-linux-gnu-cc -std=c++17
+nvcc warning : incompatible redefinition for option 'compiler-bindir', the last value of this option was used
+/root/CacheGen/LMCache/third_party/torchac_cuda/torchac_kernel_dec_new.cu(224): warning #177-D: variable "channel_id" was declared but never referenced
+          const int channel_id = global_channel_offset + i;
+                    ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+[4/4] /root/miniconda3/envs/cachegen/bin/nvcc --generate-dependencies-with-compile --dependency-output /root/CacheGen/LMCache/third_party/torchac_cuda/build/temp.linux-x86_64-cpython-310/cal_cdf.o.d -I./include -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include/TH -I/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include/THC -I/root/miniconda3/envs/cachegen/include -I/root/miniconda3/envs/cachegen/include/python3.10 -c -c /root/CacheGen/LMCache/third_party/torchac_cuda/cal_cdf.cu -o /root/CacheGen/LMCache/third_party/torchac_cuda/build/temp.linux-x86_64-cpython-310/cal_cdf.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=torchac_cuda -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_86,code=compute_86 -gencode=arch=compute_86,code=sm_86 -ccbin /root/miniconda3/envs/cachegen/bin/x86_64-conda-linux-gnu-cc -std=c++17
+nvcc warning : incompatible redefinition for option 'compiler-bindir', the last value of this option was used
+/root/CacheGen/LMCache/third_party/torchac_cuda/cal_cdf.cu: In function 'at::Tensor calculate_cdf(const at::Tensor&, int)':
+/root/CacheGen/LMCache/third_party/torchac_cuda/cal_cdf.cu:82:64: warning: 'at::GenericPackedTensorAccessor<T, N, PtrTraits, index_t> at::Tensor::packed_accessor() const & [with T = signed char; long unsigned int N = 3; PtrTraits = at::DefaultPtrTraits; index_t = long int]' is deprecated: packed_accessor is deprecated, use packed_accessor32 or packed_accessor64 instead [-Wdeprecated-declarations]
+   82 |     auto input_accessor = input.packed_accessor<int8_t, 3>();
+      |                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ^ 
+/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:256:1: note: declared here
+  256 |   GenericPackedTensorAccessor<T,N,PtrTraits,index_t> packed_accessor() const & {
+      | ^ ~~~~~~~~~~~~~
+/root/CacheGen/LMCache/third_party/torchac_cuda/cal_cdf.cu:83:60: warning: 'at::GenericPackedTensorAccessor<T, N, PtrTraits, index_t> at::Tensor::packed_accessor() const & [with T = short int; long unsigned int N = 3; PtrTraits = at::DefaultPtrTraits; index_t = long int]' is deprecated: packed_accessor is deprecated, use packed_accessor32 or packed_accessor64 instead [-Wdeprecated-declarations]
+   83 |     auto output_accessor = output.packed_accessor<int16_t, 3>();
+      |                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:256:1: note: declared here
+  256 |   GenericPackedTensorAccessor<T,N,PtrTraits,index_t> packed_accessor() const & {
+      | ^ ~~~~~~~~~~~~~
+creating build/lib.linux-x86_64-cpython-310
+/root/miniconda3/envs/cachegen/bin/x86_64-conda-linux-gnu-c++ -shared -Wl,-rpath,/root/miniconda3/envs/cachegen/lib -Wl,-rpath-link,/root/miniconda3/envs/cachegen/lib -L/root/miniconda3/envs/cachegen/lib -Wl,-rpath,/root/miniconda3/envs/cachegen/lib -Wl,-rpath-link,/root/miniconda3/envs/cachegen/lib -L/root/miniconda3/envs/cachegen/lib -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,-rpath,/root/miniconda3/envs/cachegen/lib -Wl,-rpath-link,/root/miniconda3/envs/cachegen/lib -L/root/miniconda3/envs/cachegen/lib -L/root/miniconda3/envs/cachegen/targets/x86_64-linux/lib -L/root/miniconda3/envs/cachegen/targets/x86_64-linux/lib/stubs -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /root/miniconda3/envs/cachegen/include -I/root/miniconda3/envs/cachegen/targets/x86_64-linux/include -L/root/miniconda3/envs/cachegen/targets/x86_64-linux/lib -L/root/miniconda3/envs/cachegen/targets/x86_64-linux/lib/stubs -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /root/miniconda3/envs/cachegen/include -I/root/miniconda3/envs/cachegen/targets/x86_64-linux/include -L/root/miniconda3/envs/cachegen/targets/x86_64-linux/lib -L/root/miniconda3/envs/cachegen/targets/x86_64-linux/lib/stubs /root/CacheGen/LMCache/third_party/torchac_cuda/build/temp.linux-x86_64-cpython-310/cal_cdf.o /root/CacheGen/LMCache/third_party/torchac_cuda/build/temp.linux-x86_64-cpython-310/main.o /root/CacheGen/LMCache/third_party/torchac_cuda/build/temp.linux-x86_64-cpython-310/torchac_kernel_dec_new.o /root/CacheGen/LMCache/third_party/torchac_cuda/build/temp.linux-x86_64-cpython-310/torchac_kernel_enc_new.o -L/root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torch/lib -L/root/miniconda3/envs/cachegen/lib -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda -o build/lib.linux-x86_64-cpython-310/torchac_cuda.cpython-310-x86_64-linux-gnu.so
+creating build/bdist.linux-x86_64
+creating build/bdist.linux-x86_64/egg
+copying build/lib.linux-x86_64-cpython-310/torchac_cuda.cpython-310-x86_64-linux-gnu.so -> build/bdist.linux-x86_64/egg
+creating stub loader for torchac_cuda.cpython-310-x86_64-linux-gnu.so
+byte-compiling build/bdist.linux-x86_64/egg/torchac_cuda.py to torchac_cuda.cpython-310.pyc
+creating build/bdist.linux-x86_64/egg/EGG-INFO
+copying torchac_cuda.egg-info/PKG-INFO -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying torchac_cuda.egg-info/SOURCES.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying torchac_cuda.egg-info/dependency_links.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying torchac_cuda.egg-info/top_level.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+writing build/bdist.linux-x86_64/egg/EGG-INFO/native_libs.txt
+zip_safe flag not set; analyzing archive contents...
+__pycache__.torchac_cuda.cpython-310: module references __file__
+creating dist
+creating 'dist/torchac_cuda-0.0.0-py3.10-linux-x86_64.egg' and adding 'build/bdist.linux-x86_64/egg' to it
+removing 'build/bdist.linux-x86_64/egg' (and everything under it)
+Processing torchac_cuda-0.0.0-py3.10-linux-x86_64.egg
+creating /root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torchac_cuda-0.0.0-py3.10-linux-x86_64.egg
+Extracting torchac_cuda-0.0.0-py3.10-linux-x86_64.egg to /root/miniconda3/envs/cachegen/lib/python3.10/site-packages
+Adding torchac-cuda 0.0.0 to easy-install.pth file
+
+Installed /root/miniconda3/envs/cachegen/lib/python3.10/site-packages/torchac_cuda-0.0.0-py3.10-linux-x86_64.egg
+Processing dependencies for torchac-cuda==0.0.0
+Finished processing dependencies for torchac-cuda==0.0.0
+(cachegen) root@autodl-container-690911b33c-d8271f5a:~/CacheGen/LMCache/third_party/torchac_cuda# 
