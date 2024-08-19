@@ -11,6 +11,7 @@ from lmcache.storage_backend.connector import CreateConnector
 from lmcache.storage_backend.serde import TorchSerializer, TorchDeserializer, CacheGenSerializer, CacheGenDeserializer, CreateSerde
 from lmcache.utils import CacheEngineKey
 from lmcache.utils import _lmcache_nvtx_annotate
+from LMCache.lmcache.utils import get_hash_index, get_sha256_key
 
 logger = init_logger(__name__)
 
@@ -38,7 +39,8 @@ class LMCRemoteBackend(LMCBackendInterface):
         """
         super().__init__()
         self.existing_keys = set()
-        self.connection = CreateConnector(config.remote_url)
+        self.connections = CreateConnector(config.remote_urls)
+        self.num_connection = config.num_url
         s, d = CreateSerde(config.remote_serde, config, metadata)
         self.serializer = s
         self.deserializer = d
@@ -86,7 +88,9 @@ class LMCRemoteBackend(LMCBackendInterface):
         """
         list the remote keys (and also update the 'cached' existing keys set)
         """
-        keys = self.connection.list()
+        keys = []
+        for connection in self.connections:
+            keys.append(connection.list())
         for key in keys:
             self.existing_keys.add(self._split_key(key))
         return [self._split_key(key) for key in keys]
@@ -107,7 +111,9 @@ class LMCRemoteBackend(LMCBackendInterface):
         if key in self.existing_keys:
             return True
         else:
-            flag = self.connection.exists(self._combine_key(key))
+            sha256_key = get_sha256_key(self._combine_key(key))
+            connection = self.connections[get_hash_index(sha256_key, self.num_connection)]
+            flag = connection.exists(self._combine_key(key))
             if flag:
                 self.existing_keys.add(key)
             return flag
@@ -118,7 +124,9 @@ class LMCRemoteBackend(LMCBackendInterface):
             kv_chunk: torch.Tensor,
         ) -> None:
         bs = self.serializer.to_bytes(kv_chunk)
-        self.connection.set(self._combine_key(key), bs)
+        sha256_key = get_sha256_key(self._combine_key(key))
+        connection = self.connections[get_hash_index(sha256_key, self.num_connection)]
+        connection.set(self._combine_key(key), bs)
         self.existing_keys.add(key)
 
 
@@ -159,7 +167,9 @@ class LMCRemoteBackend(LMCBackendInterface):
         if not self.contains(key):
             return None
 
-        bs = self.connection.get(self._combine_key(key))
+        sha256_key = get_sha256_key(self._combine_key(key))
+        connection = self.connections[get_hash_index(sha256_key, self.num_connection)]
+        bs = connection.get(self._combine_key(key))
         if bs is None or len(bs) == 0:
             return None
 
@@ -194,7 +204,7 @@ class LMCPipelinedRemoteBackend(LMCRemoteBackend):
         super().__init__(config, metadata)
 
         self.existing_keys = set()
-        self.connection = CreateConnector(config.remote_url)
+        self.connections = CreateConnector(config.remote_urls)
         s, d = CreateSerde(config.remote_serde, config, metadata)
         self.serializer = s
         self.deserializer = d
@@ -230,7 +240,7 @@ class LMCPipelinedRemoteBackend(LMCRemoteBackend):
 
             idx, key = item
             if self.contains(key):
-                data = self.connection.get(self._combine_key(key))
+                data = self.get(key)
                 self.deserialize_queue.put_nowait((idx, data))
 
             self.network_queue.task_done()

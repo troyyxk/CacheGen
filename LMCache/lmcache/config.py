@@ -21,7 +21,9 @@ class LMCacheEngineMetadata:
 class LMCacheEngineConfig:
     chunk_size: int
     local_device: str
-    remote_url: str
+    # remote_url: str
+    remote_urls: list[str]
+    num_url: int
     remote_serde: str # Can be "torch" or "cachegen"
 
     pipelined_backend: bool
@@ -34,7 +36,7 @@ class LMCacheEngineConfig:
             pipelined_backend: bool = False,
         ) -> 'LMCacheEngineConfig':
         return LMCacheEngineConfig(
-                chunk_size, local_device, remote_url, remote_serde,
+                chunk_size, local_device, [remote_url], 1, remote_serde,
                 pipelined_backend)
 
     def from_legacy(
@@ -47,12 +49,15 @@ class LMCacheEngineConfig:
         match backend:
             case "cpu" | "cuda":
                 local_device = backend
-                remote_url = None
-            case url if re.match(r"(.*)://(.*):(\d+)", url):
+                remote_urls = None
+                num_url = 0
+            # case url if re.match(r"(.*)://(.*):(\d+)", url):
+            case _:
                 local_device = None
-                remote_url = url 
+                remote_urls = url.split(";")
+                num_url = len(remote_urls)
         return LMCacheEngineConfig(
-                chunk_size, local_device, remote_url, remote_serde,
+                chunk_size, local_device, remote_urls, num_url, remote_serde,
                 pipelined_backend)
 
     @staticmethod
@@ -65,11 +70,12 @@ class LMCacheEngineConfig:
 
         chunk_size = config.get("chunk_size", 256)
         local_device = config.get("local_device", None)
-        remote_url = config.get("remote_url", None)
+        remote_urls = config.get("remote_url", None).split(";")
+        num_url = len(remote_urls)
         remote_serde = config.get("remote_serde", "torch")
         pipelined_backend = config.get("pipelined_backend", False)
         return LMCacheEngineConfig(
-                chunk_size, local_device, remote_url, remote_serde,
+                chunk_size, local_device, remote_urls, num_url, remote_serde,
                 pipelined_backend)
 
 
