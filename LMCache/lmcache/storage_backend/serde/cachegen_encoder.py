@@ -243,15 +243,52 @@ def encode_ntokens(cdf_int, encode_input, output_buffer, output_lengths) -> torc
     #return byte_tensor.cpu().numpy().tobytes()
     
 
+def separate_tensor(self,raw_tensor):
+    # new_tensor =torch.zeros(raw_tensor.shape).cuda().to(torch.float16)
+    anchor_tensors = []
+    delta_tensors = []
+    stride =5
+    chunks = torch.chunk(raw_tensor[0],raw_tensor.shape[1]// stride)
+    for i in range(len(chunks)):
+        length = len(chunks[i])
+        chunk = chunks[i]
+        os.environ["BINS"]="128"
+        ref = self.vectorwise_quant(chunk[0].unsqueeze(0))[0]
+        chunk_all = chunk- chunk[0]
+        if int(os.environ["LAYER"])< 4:
+            os.environ["BINS"]="128"
+            chunk_all = self.vectorwise_quant(chunk_all)
+        elif int(os.environ["LAYER"])< 12:
+            os.environ["BINS"]="16"
+            chunk_all = self.vectorwise_quant(chunk_all.clone())
+        elif int(os.environ["LAYER"])< 24:
+            os.environ["BINS"]="16"
+            chunk_all=self.vectorwise_quant(chunk_all.clone())
+        else:
+            os.environ["BINS"] = "12"
+            chunk_all = self.vectorwise_quant(chunk_all.clone())
+        chunk_all += ref
+        chunk_all[0]= ref
+        # new_tensor[0, i*length:(i+1)*length, :]= chunk_all
+        anchor_tensors.append(ref)
+        delta_tensors.append(chunk_all[1, :])
+    return anchor_tensors, delta_tensors
+
+
 @_lmcache_nvtx_annotate
 def encode_function(
         kv: torch.Tensor, 
         config: CacheGenConfig, 
         key_bins: torch.Tensor,
         value_bins: torch.Tensor,
-        chunk_size: int) -> CacheGenGPUEncoderOutput:
+        chunk_size: int,
+        encode_level: int) -> list(CacheGenGPUEncoderOutput):
     """
     Given the path to the original key value cache, encode the KV cache
+    encode_level: how fine-grind do we want the resulting delta tensor to be
+        - 1: do not divide
+        - 2: divide each chunk into 3 sub-chunk
+        - 3: as each individual tensor (most find grind)
     """
     num_heads, head_size = kv.shape[-2:]
     fp_k, fp_v = _split_kv(kv)
