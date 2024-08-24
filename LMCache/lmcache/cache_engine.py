@@ -6,7 +6,6 @@ import hashlib
 from typing import Tuple, List, Union, Iterator, Optional
 from dataclasses import dataclass
 import logging
-from datetime import datetime
 
 from lmcache.storage_backend import CreateStorageBackend
 from lmcache.config import LMCacheEngineConfig, LMCacheEngineMetadata
@@ -49,8 +48,7 @@ class LMCacheEngine:
             chunk_hash: str,
             fmt: str
         ) -> CacheEngineKey:
-        return CacheEngineKey(fmt, self.metadata.model_name, self.metadata.world_size, 
-                              self.metadata.worker_id, chunk_hash, datetime.now())
+        return CacheEngineKey(fmt, self.metadata.model_name, self.metadata.world_size, self.metadata.worker_id, chunk_hash)
 
     def _num_tokens_in_kv(
             self,

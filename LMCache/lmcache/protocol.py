@@ -15,9 +15,6 @@ class Constants:
     SERVER_SUCCESS = 200
     SERVER_FAIL = 400
 
-    SERVER_SYNC = 100
-    SERVER_PUT = 101
-    SERVER_GET = 102
 
 @dataclass
 class ClientMetaMessage:
@@ -27,29 +24,21 @@ class ClientMetaMessage:
     command: int
     key: str
     length: int
-    force_latest: int
-
-    def __init__(self, commnad, key, length, force_latest=0):
-        self.command = commnad
-        self.key = key
-        self.length = length
-        self.force_latest = force_latest
-
 
     def serialize(self) -> bytes:
         assert len(self.key) <= MAX_KEY_LENGTH, f"Key length {len(self.key)} exceeds maximum {MAX_KEY_LENGTH}"
-        packed_bytes = struct.pack(f"ii{MAX_KEY_LENGTH}s", self.command, self.length, self.force_latest, self.key.encode().ljust(MAX_KEY_LENGTH))
+        packed_bytes = struct.pack(f"ii{MAX_KEY_LENGTH}s", self.command, self.length, self.key.encode().ljust(MAX_KEY_LENGTH))
         return packed_bytes
 
     @staticmethod
     def deserialize(s: bytes) -> "ClientMetaMessage":
-        command, length, force_latest, key = struct.unpack(f"ii{MAX_KEY_LENGTH}s", s)
+        command, length, key = struct.unpack(f"ii{MAX_KEY_LENGTH}s", s)
         #print(f"Command: {command}, key: {key}, length: {length}")
-        return ClientMetaMessage(command, key.decode().strip(), length, force_latest)
+        return ClientMetaMessage(command, key.decode().strip(), length)
 
     @staticmethod
     def packlength() -> int:
-        return 4 * 2 + MAX_KEY_LENGTH + 8
+        return 4 * 2 + MAX_KEY_LENGTH
 
 @dataclass
 class ServerMetaMessage:
@@ -57,7 +46,6 @@ class ServerMetaMessage:
     Control message from LMCacheServer to LMCServerConnector 
     """
     code: int
-    key: str
     length: int
 
     def serialize(self) -> bytes:
@@ -66,11 +54,10 @@ class ServerMetaMessage:
 
     @staticmethod
     def packlength() -> int:
-        return 4 * 2 + MAX_KEY_LENGTH
-        # return 8
+        return 8
 
     @staticmethod
     def deserialize(s: bytes) -> "ServerMetaMessage":
-        code, key, length = struct.unpack('ii', s)
-        return ServerMetaMessage(code, key, length)
+        code, length = struct.unpack('ii', s)
+        return ServerMetaMessage(code, length)
 
