@@ -100,6 +100,9 @@ class CacheGenGPUEncoderOutput:
     max_tensors_value: torch.Tensor
     num_heads: int
     head_size: int
+    is_anchor: int
+    anchor_key: int
+    delta_pos: int
 
     def __getitem__(self, key: str) -> int:
         return getattr(self, key)

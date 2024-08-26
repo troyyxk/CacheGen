@@ -3,6 +3,8 @@ import hashlib
 from nvtx import annotate
 from typing import Tuple
 from dataclasses import dataclass
+import hashlib
+import io
 
 # Type definition
 KVCache = Tuple[Tuple[torch.Tensor, torch.Tensor], ...]
@@ -46,3 +48,10 @@ def _lmcache_nvtx_annotate(func, domain="lmcache"):
         color=_get_color_for_nvtx(func.__qualname__),
         domain=domain,
     )(func)
+
+def get_sha256_key(tensor: torch.Tensor):
+    buff = io.BytesIO()
+    torch.save(tensor, buff)
+    buff.seek(0)
+    key = buff.read()
+    return int(hashlib.sha256(key.encode('utf-8')).hexdigest(), 16) % 10 ** 8

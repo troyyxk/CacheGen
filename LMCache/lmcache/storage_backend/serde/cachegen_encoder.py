@@ -12,7 +12,7 @@ import lmcache.storage_backend.serde.cachegen_basics as CGBasics
 from lmcache.storage_backend.serde.serde import Serializer
 from lmcache.config import LMCacheEngineConfig, LMCacheEngineMetadata
 from lmcache.logging import init_logger
-from lmcache.utils import _lmcache_nvtx_annotate
+from lmcache.utils import _lmcache_nvtx_annotate, get_sha256_key
 
 logger = init_logger(__name__)
 
@@ -243,7 +243,7 @@ def encode_ntokens(cdf_int, encode_input, output_buffer, output_lengths) -> torc
     #return byte_tensor.cpu().numpy().tobytes()
     
 
-def separate_tensor(self,raw_tensor):
+def separate_tensor(raw_tensor):
     # new_tensor =torch.zeros(raw_tensor.shape).cuda().to(torch.float16)
     anchor_tensors = []
     delta_tensors = []
@@ -253,20 +253,22 @@ def separate_tensor(self,raw_tensor):
         length = len(chunks[i])
         chunk = chunks[i]
         os.environ["BINS"]="128"
-        ref = self.vectorwise_quant(chunk[0].unsqueeze(0))[0]
+        # 8 bit high precision for anchor tensor
+        ref = quant_8bit(chunk[0].unsqueeze(0))[0]
         chunk_all = chunk- chunk[0]
         if int(os.environ["LAYER"])< 4:
             os.environ["BINS"]="128"
-            chunk_all = self.vectorwise_quant(chunk_all)
+            # low precision for delta tensor
+            chunk_all = vectorwise_quant(chunk_all)
         elif int(os.environ["LAYER"])< 12:
             os.environ["BINS"]="16"
-            chunk_all = self.vectorwise_quant(chunk_all.clone())
+            chunk_all = vectorwise_quant(chunk_all.clone())
         elif int(os.environ["LAYER"])< 24:
             os.environ["BINS"]="16"
-            chunk_all=self.vectorwise_quant(chunk_all.clone())
+            chunk_all=vectorwise_quant(chunk_all.clone())
         else:
             os.environ["BINS"] = "12"
-            chunk_all = self.vectorwise_quant(chunk_all.clone())
+            chunk_all = vectorwise_quant(chunk_all.clone())
         chunk_all += ref
         chunk_all[0]= ref
         # new_tensor[0, i*length:(i+1)*length, :]= chunk_all
@@ -296,7 +298,9 @@ def encode_function(
     nlayers = fp_k.shape[0] + fp_v.shape[0]
 
     new_key, max_tensors_key = torch_quant_vectorized(key_bins, fp_k)
+    key_anchor, key_delta = separate_tensor(new_key)
     new_value, max_tensors_value = torch_quant_vectorized(value_bins, fp_v)
+    value_anchor, value_delta = separate_tensor(new_value)
     encode_input = torch.cat((new_key, new_value), dim=0).reshape(nlayers, chunk_size, nchannels)
 
     new_cdf_key = torchac_cuda.calculate_cdf(new_key, int(key_bins.max()))
@@ -313,29 +317,63 @@ def encode_function(
             device=encode_input.device)
 
     data_chunks = []
-    for i in range(0, chunk_size, CGBasics.CACHEGEN_GPU_MAX_TOKENS_PER_CHUNK):
-        start = i
-        end = min(i + CGBasics.CACHEGEN_GPU_MAX_TOKENS_PER_CHUNK, chunk_size)
+    anchor_outputs = []
+    delta_outputs = []
+    for i in range(len(key_anchor)):
+        # key
+        sha_key = get_sha256_key(key_anchor[i])
         bytestream = encode_ntokens(
             cdf_int,
-            encode_input[:, start:end, :],
+            key_anchor[i],
             output_buffer,
             output_lengths
         )
-        data_chunks.append(CacheGenGPUBytestream(
-            bytestream = bytestream, 
-            bytestream_lengths = output_lengths.clone(),
-            ntokens = end - start,
-        ))
-
-    return CacheGenGPUEncoderOutput(
-            data_chunks,
-            cdf_int,
-            max_tensors_key = max_tensors_key,
-            max_tensors_value = max_tensors_value,
-            num_heads = num_heads,
-            head_size = head_size,
+        anchor_outputs.append(
+            CacheGenGPUEncoderOutput(CacheGenGPUBytestream(bytestream, output_lengths.clone(), 1),
+                                     cdf_int, max_tensors_key, max_tensors_value, num_heads, head_size, 1, sha_key,
+                                     None)
         )
+        for j in range(len(key_delta[i])):
+            bytestream = encode_ntokens(
+                cdf_int,
+                key_delta[i][j],
+                output_buffer,
+                output_lengths
+            )
+            delta_outputs.append(
+                CacheGenGPUEncoderOutput(CacheGenGPUBytestream(bytestream, output_lengths.clone(), 1),
+                                         cdf_int, max_tensors_key, max_tensors_value, num_heads, head_size, 0, sha_key,
+                                         j)
+            )
+
+        # value
+        sha_key = get_sha256_key(value_anchor[0])
+        bytestream = encode_ntokens(
+            cdf_int,
+            value_anchor[i],
+            output_buffer,
+            output_lengths
+        )
+        anchor_outputs.append(
+            CacheGenGPUEncoderOutput(CacheGenGPUBytestream(bytestream, output_lengths.clone(), 1),
+                                     cdf_int, max_tensors_key, max_tensors_value, num_heads, head_size, 1, sha_key,
+                                     None)
+        )
+        for j in range(len(value_delta[i])):
+            bytestream = encode_ntokens(
+                cdf_int,
+                value_delta[i][j],
+                output_buffer,
+                output_lengths
+            )
+            delta_outputs.append(
+                CacheGenGPUEncoderOutput(CacheGenGPUBytestream(bytestream, output_lengths.clone(), 1),
+                                         cdf_int, max_tensors_key, max_tensors_value, num_heads, head_size, 0, sha_key,
+                                         j)
+            )
+
+    # output anchor and delta outputs so CacheGen can decide which one to use under different bandwidth
+    return anchor_outputs, delta_outputs
 
 class CacheGenSerializer(Serializer):
     def __init__(self, config: LMCacheEngineConfig, metadata: LMCacheEngineMetadata):
