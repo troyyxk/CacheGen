@@ -42,7 +42,7 @@ class LMCacheEngineConfig:
     def from_legacy(
             chunk_size: int = 256,
             backend: str = "cuda",
-            persist_path: str = None,
+            urls: str = "",
             remote_serde: str = "torch",
             pipelined_backend: bool = False,
         ) -> 'LMCacheEngineConfig':
@@ -54,7 +54,7 @@ class LMCacheEngineConfig:
             # case url if re.match(r"(.*)://(.*):(\d+)", url):
             case _:
                 local_device = None
-                remote_urls = url.split(";")
+                remote_urls = urls.split(";")
                 num_url = len(remote_urls)
         return LMCacheEngineConfig(
                 chunk_size, local_device, remote_urls, num_url, remote_serde,
