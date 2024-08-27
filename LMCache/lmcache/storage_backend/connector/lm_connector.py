@@ -42,13 +42,33 @@ class LMCServerConnector(RemoteConnector):
         self.send_all(ClientMetaMessage(Constants.CLIENT_PUT, key, len(obj)).serialize())
         self.send_all(obj)
 
+    def set_force(self, key: str, obj: bytes):
+        logger.debug("Call to set()!")
+        self.send_all(ClientMetaMessage(Constants.CLIENT_PUT, key, len(obj), 1).serialize())
+        self.send_all(obj)
+
     @_lmcache_nvtx_annotate
     def get(self, key: str) -> Optional[bytes]:
         self.send_all(ClientMetaMessage(Constants.CLIENT_GET, key, 0).serialize())
         data = self.client_socket.recv(ServerMetaMessage.packlength())
         meta = ServerMetaMessage.deserialize(data)
         if meta.code != Constants.SERVER_SUCCESS:
+            print("### Not server success")
             return None
+        print("### Get success")
+        length = meta.length
+        data = self.receive_all(length)
+        return data
+
+    @_lmcache_nvtx_annotate
+    def get_force(self, key: str) -> Optional[bytes]:
+        self.send_all(ClientMetaMessage(Constants.CLIENT_GET, key, 0, 1).serialize())
+        data = self.client_socket.recv(ServerMetaMessage.packlength())
+        meta = ServerMetaMessage.deserialize(data)
+        if meta.code != Constants.SERVER_SUCCESS:
+            print("### Not server success")
+            return None
+        print("### Get success")
         length = meta.length
         data = self.receive_all(length)
         return data

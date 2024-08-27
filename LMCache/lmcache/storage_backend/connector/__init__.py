@@ -23,4 +23,4 @@ def CreateConnector(url: str) -> RemoteConnector:
         case _:
             raise ValueError(f"Invalid remote url {config.remote_url} -- Unknown connector type {connector_type}")
 
-    return connector if not GlobalConfig.is_debug() else RemoteConnectorDebugWrapper(connector)
+    return connector
