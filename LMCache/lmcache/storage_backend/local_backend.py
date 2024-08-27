@@ -18,7 +18,8 @@ class LMCLocalBackend(LMCBackendInterface):
     """
     def __init__(
             self, 
-            config: LMCacheEngineConfig
+            config: LMCacheEngineConfig,
+            local_storage_size: int
         ):
         """
         Throws:
@@ -29,10 +30,12 @@ class LMCLocalBackend(LMCBackendInterface):
         self.chunk_size = config.chunk_size 
         self.config = config
         self.dict = {}
+        self.keys = []
+        self.local_storage_size = local_storage_size
 
     def contains(
             self, 
-            key: CacheEngineKey,
+            key: str,
         ) -> bool:
         """
         Check if the cache engine contains the key.
@@ -47,10 +50,10 @@ class LMCLocalBackend(LMCBackendInterface):
 
     def put(
             self, 
-            key: CacheEngineKey,
-            kv_chunk: KVCache,
+            key: str,
+            kv_chunk: str,
             blocking: bool = True,
-        ) -> None:
+        ) -> Optional[Tuple]:
         """
         Store the KV cache of the tokens into the cache engine.
 
@@ -64,16 +67,27 @@ class LMCLocalBackend(LMCBackendInterface):
         Note:
             The KV cache should NOT have the "batch" dimension.
         """
+        print("### [Local]Try put key {0}, value {1}".format(key, kv_chunk))
         if not blocking:
             logger.warn("Non-blocking is not implemented for local backend")
+        kv_to_send = None
+        if len(self.keys) >= self.local_storage_size:
+            evict_key = self.keys.pop(0)
+            evict_value = self.dict[evict_key]
+            del self.dict[evict_key]
+            kv_to_send = (evict_key, evict_value)
         self.dict[key] = kv_chunk
+        self.keys.append(key)
+        if kv_to_send is not None:
+            print("### [Local]Evict key {0}, value {1}".format(kv_to_send[0], kv_to_send[1]))
+        return kv_to_send
 
 
     @_lmcache_nvtx_annotate
     def get(
             self,
-            key: CacheEngineKey,
-        ) -> Optional[KVCache]:
+            key: str,
+        ) -> Optional[str]:
         """
         Retrive the KV cache chunk by the given key 
 
@@ -83,4 +97,8 @@ class LMCLocalBackend(LMCBackendInterface):
             the kv cache of the token chunk, in the format of nested tuples
             None if the key is not found
         """
+        print("### [Local]Try get key {0}".format(key))
+        if key in self.keys:
+            self.keys.remove(key)
+            self.keys.append(key)
         return self.dict.get(key, None)

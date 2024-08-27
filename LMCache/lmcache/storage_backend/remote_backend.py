@@ -39,9 +39,9 @@ class LMCRemoteBackend(LMCBackendInterface):
         super().__init__()
         self.existing_keys = set()
         self.connection = CreateConnector(config.remote_url)
-        s, d = CreateSerde(config.remote_serde, config, metadata)
-        self.serializer = s
-        self.deserializer = d
+        # s, d = CreateSerde(config.remote_serde, config, metadata)
+        # self.serializer = s
+        # self.deserializer = d
         self.put_thread = None
 
         # For async put
@@ -88,12 +88,12 @@ class LMCRemoteBackend(LMCBackendInterface):
         """
         keys = self.connection.list()
         for key in keys:
-            self.existing_keys.add(self._split_key(key))
-        return [self._split_key(key) for key in keys]
+            self.existing_keys.add(key)
+        return keys
 
     def contains(
             self, 
-            key: CacheEngineKey,
+            key: str,
         ) -> bool:
         """
         Check if the cache engine contains the key.
@@ -107,25 +107,26 @@ class LMCRemoteBackend(LMCBackendInterface):
         if key in self.existing_keys:
             return True
         else:
-            flag = self.connection.exists(self._combine_key(key))
+            flag = self.connection.exists(key)
             if flag:
                 self.existing_keys.add(key)
             return flag
 
     def put_blocking(
             self,
-            key: CacheEngineKey,
-            kv_chunk: torch.Tensor,
+            key: str,
+            kv_chunk: str,
         ) -> None:
-        bs = self.serializer.to_bytes(kv_chunk)
-        self.connection.set(self._combine_key(key), bs)
+        print("### [Remote]Try put key {0}, value {1}".format(key, kv_chunk))
+        bs = str.encode(kv_chunk)
+        self.connection.set(key, bs)
         self.existing_keys.add(key)
 
 
     def put(
             self, 
-            key: CacheEngineKey,
-            kv_chunk: torch.Tensor,
+            key: str,
+            kv_chunk: str,
             blocking: bool = True,
         ) -> None:
         """
@@ -145,25 +146,26 @@ class LMCRemoteBackend(LMCBackendInterface):
         if blocking:
             self.put_blocking(key, kv_chunk)
         else:
-            self.put_queue.put((key, kv_chunk.clone()))
+            self.put_queue.put((key, kv_chunk))
 
 
     @_lmcache_nvtx_annotate
     def get(
             self,
-            key: CacheEngineKey,
-        ) -> Optional[torch.Tensor]:
+            key: str,
+        ) -> Optional[str]:
         """
         Retrive the KV cache chunk (in a single big tensor) by the given key
         """
+        print("### [Remote]Try get key {0}".format(key))
         if not self.contains(key):
             return None
 
-        bs = self.connection.get(self._combine_key(key))
+        bs = self.connection.get(key)
         if bs is None or len(bs) == 0:
             return None
 
-        return self.deserializer.from_bytes(bs)
+        return bs.decode()
 
     def close(self):
         if self.put_thread is not None and self.put_thread.is_alive():
@@ -255,8 +257,8 @@ class LMCPipelinedRemoteBackend(LMCRemoteBackend):
     @_lmcache_nvtx_annotate
     def batched_get(
         self,
-        keys: Iterator[CacheEngineKey],
-    ) -> Iterator[Optional[torch.Tensor]]:
+        keys: Iterator[str],
+    ) -> Iterator[Optional[str]]:
         self.result_list = []
         for idx, key in enumerate(keys):
             self.network_queue.put_nowait((idx, key))

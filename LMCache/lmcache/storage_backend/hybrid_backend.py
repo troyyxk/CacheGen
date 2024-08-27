@@ -27,17 +27,15 @@ class LMCHybridBackend(LMCBackendInterface):
     It implements write-through and read-through caching.
     """
 
-    # TODO: LRU eviction policy
-
-    def __init__(self, config: LMCacheEngineConfig, metadata: LMCacheEngineMetadata):
-        self.local_store = LMCLocalBackend(config)
+    def __init__(self, config: LMCacheEngineConfig, metadata: LMCacheEngineMetadata, local_storage_size: int):
+        self.local_store = LMCLocalBackend(config, local_storage_size)
         if config.pipelined_backend:
             self.remote_store = LMCPipelinedRemoteBackend(config, metadata)
         else:
             self.remote_store = LMCRemoteBackend(config, metadata)
         
         # TODO add a configuration item to do this
-        self._prefetch(metadata)
+        # self._prefetch(metadata)
            
     def _prefetch(
         self,
@@ -71,32 +69,33 @@ class LMCHybridBackend(LMCBackendInterface):
 
     def put(
             self,
-            key: Tuple[str, str],
-            value: torch.Tensor,
+            key: str,
+            value: str,
             blocking: bool = True,
         ):
-        self.local_store.put(key, value, blocking = True)
-        self.remote_store.put(key, value, blocking)
+        evict_kv = self.local_store.put(key, value, blocking = True)
+        if evict_kv is not None:
+            self.remote_store.put(evict_kv[0], evict_kv[1], blocking)
     
         
     @_lmcache_nvtx_annotate
     def get(
             self,
-            key: Tuple[str, str],
-        ) -> Optional[torch.Tensor]:
+            key: str,
+        ) -> Optional[str]:
         value = self.local_store.get(key)
         if value is None:
             value = self.remote_store.get(key)
             if value is not None:
-                self.local_store.put(key, value)
+                self.put(key, value)
         return value
     
 
     @_lmcache_nvtx_annotate
     def batched_get(
             self,
-            keys: Iterator[CacheEngineKey],
-        ) -> Iterator[Optional[torch.Tensor]]:
+            keys: str,
+        ) -> Iterator[Optional[str]]:
         ret = []
         remote_queries = []
         remote_query_idxs = []
@@ -112,7 +111,7 @@ class LMCHybridBackend(LMCBackendInterface):
                                     remote_queries, 
                                     remote_query_results):
             if result is not None:
-                self.local_store.put(key, result)
+                self.put(key, result)
                 ret[idx] = result
         return ret
 
